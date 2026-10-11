@@ -1,6 +1,6 @@
 # Zaleznosci kontroli CI (workflow osint-pipeline). Pakiety pipeline'u sa stdlib-only; tu tylko narzedzia testowe
 # i minimum dla osint-poland/tests/test_org_intel_feed.py (conftest importuje psycopg, konektory httpx i pydantic).
-pytest==9.0.3
+pytest==9.1.1
 ruff==0.16.10
 httpx==0.28.1
 pydantic==2.12.5
