@@ -1,0 +1,4 @@
+﻿nazwa;serwis;status;pewnosc;url;uzasadnienie;kod_http
+acme_testowa;GitHub;FOUND;0.95;https://github.com/acme_testowa;tekst profilu;200
+acme_testowa;Reddit;NOT_FOUND;0.00;https://reddit.com/u/acme_testowa;404;404
+acme_testowa;Blokada;ERROR;0.00;https://b.example/acme_testowa;timeout;

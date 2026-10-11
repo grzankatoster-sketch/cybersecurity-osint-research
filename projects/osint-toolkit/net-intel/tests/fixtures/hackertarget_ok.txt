@@ -1,0 +1,6 @@
+example.org,93.184.216.34
+www.example.org,93.184.216.34
+mail.example.org,192.0.2.25
+ipv6.example.org,2001:db8::1
+cdn.example.org,198.51.100.7
+other.invalid-example.net,203.0.113.9

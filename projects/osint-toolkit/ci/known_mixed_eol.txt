@@ -1,0 +1,5 @@
+# Znany dlug: pliki w zasiegu pipeline'u, ktore JUZ sa zacommitowane z mieszanymi koncowkami linii (CRLF + LF w jednym
+# pliku). Kontrola hygiene:eol nie pada na te pliki (wypisuje je jako "znany dlug"), ale pada na kazdy NOWY plik z
+# mieszanymi koncowkami. Po ujednoliceniu pliku usun jego wpis (skrypt przypomni o wpisach nieaktualnych).
+entity-graph/tests/test_transforms_ip.py
+entity-graph/tests/test_transforms_person_phone_username.py

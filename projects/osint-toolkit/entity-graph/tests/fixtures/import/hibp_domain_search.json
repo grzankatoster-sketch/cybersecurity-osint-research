@@ -1,0 +1,15 @@
+{
+ "domain": "acme-testowa.example",
+ "total_accounts": 2,
+ "per_breach": {
+  "TestBreachA": 2
+ },
+ "addresses": {
+  "jan.testowy@acme-testowa.example": [
+   "TestBreachA"
+  ],
+  "biuro@acme-testowa.example": [
+   "TestBreachA"
+  ]
+ }
+}

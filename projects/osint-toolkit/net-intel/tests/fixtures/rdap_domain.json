@@ -1,0 +1,52 @@
+{
+  "objectClassName": "domain",
+  "ldhName": "EXAMPLE.ORG",
+  "status": ["client delete prohibited", "client transfer prohibited", "client update prohibited"],
+  "events": [
+    {"eventAction": "registration", "eventDate": "1995-08-14T04:00:00Z"},
+    {"eventAction": "last changed", "eventDate": "2026-08-14T07:01:34Z"},
+    {"eventAction": "expiration", "eventDate": "2027-08-13T04:00:00Z"},
+    {"eventAction": "last update of RDAP database", "eventDate": "2026-10-03T10:00:00Z"}
+  ],
+  "nameservers": [
+    {"objectClassName": "nameserver", "ldhName": "B.IANA-SERVERS.NET"},
+    {"objectClassName": "nameserver", "ldhName": "A.IANA-SERVERS.NET"}
+  ],
+  "secureDNS": {"delegationSigned": true},
+  "entities": [
+    {
+      "objectClassName": "entity",
+      "roles": ["registrar"],
+      "publicIds": [{"type": "IANA Registrar ID", "identifier": "9999"}],
+      "vcardArray": ["vcard", [
+        ["version", {}, "text", "4.0"],
+        ["fn", {}, "text", "Example Registrar, Inc."],
+        ["email", {}, "text", "registrar-private@registrar.invalid"]
+      ]],
+      "entities": [
+        {"objectClassName": "entity", "roles": ["abuse"],
+         "vcardArray": ["vcard", [["version", {}, "text", "4.0"], ["fn", {}, "text", "Abuse Desk"],
+                                  ["tel", {"type": "voice"}, "uri", "tel:+1.5550100"],
+                                  ["email", {}, "text", "abuse@registrar.invalid"]]]}
+      ]
+    },
+    {
+      "objectClassName": "entity",
+      "roles": ["registrant"],
+      "vcardArray": ["vcard", [
+        ["version", {}, "text", "4.0"],
+        ["fn", {}, "text", "Jan Prywatny Kowalski"],
+        ["org", {}, "text", "Prywatna Firma Sp. z o.o."],
+        ["email", {}, "text", "jan.kowalski@prywatny.invalid"],
+        ["tel", {"type": "voice"}, "uri", "tel:+48.600100200"],
+        ["adr", {}, "text", ["", "", "ul. Tajna 7", "Warszawa", "", "00-001", "PL"]]
+      ]]
+    },
+    {
+      "objectClassName": "entity",
+      "roles": ["administrative", "technical"],
+      "vcardArray": ["vcard", [["version", {}, "text", "4.0"], ["fn", {}, "text", "Anna Techniczna"],
+                               ["email", {}, "text", "anna.tech@prywatny.invalid"]]]
+    }
+  ]
+}

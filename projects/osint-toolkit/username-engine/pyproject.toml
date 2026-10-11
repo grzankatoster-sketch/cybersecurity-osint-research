@@ -1,0 +1,13 @@
+[project]
+name = "username-engine"
+version = "0.1.0"
+description = "Wyszukiwanie kont po nazwie uzytkownika: bazy WhatsMyName + Maigret, decyzja wielosygnalowa"
+requires-python = ">=3.12"
+dependencies = ["aiohttp>=3.10", "aiohttp-socks>=0.10"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

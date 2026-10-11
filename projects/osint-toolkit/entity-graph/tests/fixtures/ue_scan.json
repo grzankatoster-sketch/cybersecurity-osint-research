@@ -1,0 +1,8 @@
+{"query":"jkowalski","summaries":{},"analysis":{},"results":{"jkowalski":[
+ {"site":"GitHub","url":"https://github.com/jkowalski","status":"FOUND","confidence":0.97,"reason":"tekst profilu + kontrola","http_status":200,
+  "profile":{"name":"Jan Kowalski","bio":"Prywatne bio, nie przenosimy","location":"Kraków","avatar":"https://avatars.example.com/u/1?s=64","website":"https://jankowalski.dev/","links":["https://twitter.com/jkowalski?utm_source=x","not a url"],"created":"2015-01-01"}},
+ {"site":"Twitter","url":"https://x.com/jkowalski","status":"FOUND","confidence":0.9,"reason":"tekst profilu","http_status":200,
+  "profile":{"name":"Jan Kowalski","avatar":"https://avatars.example.com/u/1?s=400","website":"https://jankowalski.dev","links":["https://github.com/jkowalski"]}},
+ {"site":"Slabe","url":"https://slabe.example/jkowalski","status":"FOUND","confidence":0.4,"reason":"sam kod 200","http_status":200},
+ {"site":"Reddit","url":"https://reddit.com/u/jkowalski","status":"NOT_FOUND","confidence":0.0,"reason":"404","http_status":404},
+ {"site":"Blokada","url":"https://b.example/jkowalski","status":"ERROR","confidence":0.0,"reason":"timeout","http_status":null}]}}

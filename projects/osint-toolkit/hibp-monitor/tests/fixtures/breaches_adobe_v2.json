@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "Adobe",
+    "Title": "Adobe",
+    "Domain": "adobe.com",
+    "BreachDate": "2013-10-04",
+    "AddedDate": "2013-12-04T00:00:00Z",
+    "PwnCount": 152445165,
+    "Description": "Stary wyciek.",
+    "DataClasses": ["Email addresses", "Passwords"],
+    "IsVerified": true
+  },
+  {
+    "Name": "FikcyjnyNowy",
+    "Title": "Fikcyjny nowy wyciek (fixture testowa)",
+    "Domain": "adobe.com",
+    "BreachDate": "2026-09-01",
+    "AddedDate": "2026-09-20T10:00:00Z",
+    "PwnCount": 1234,
+    "Description": "Wymyslony wpis do testow diffu.",
+    "DataClasses": ["Email addresses"],
+    "IsVerified": false
+  }
+]

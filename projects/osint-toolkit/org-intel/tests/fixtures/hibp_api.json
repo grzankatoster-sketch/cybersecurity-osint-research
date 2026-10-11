@@ -1,0 +1,16 @@
+[
+  {"Name": "DemoBreach", "Title": "Demo Breach", "Domain": "shop.example.test", "BreachDate": "2026-08-15",
+   "AddedDate": "2026-09-01T10:00:00Z", "ModifiedDate": "2026-09-01T10:00:00Z", "PwnCount": 12345,
+   "Description": "<p>Syntetyczny incydent &amp; test. <a href=\"https://example.test/info\">Szczegóły</a></p>",
+   "LogoPath": "https://logos.example.test/demo.png", "DataClasses": ["Email addresses", "Passwords"],
+   "IsVerified": true, "IsFabricated": false, "IsSensitive": false, "IsRetired": false, "IsSpamList": false,
+   "IsMalware": false, "IsStealerLog": false, "IsSubscriptionFree": false},
+  {"Name": "FakeList", "Title": "Fake List", "Domain": "fake.test", "BreachDate": "2026-07-01",
+   "AddedDate": "2026-07-02T08:00:00Z", "PwnCount": 999, "Description": "Lista zmyślona.",
+   "DataClasses": ["Email addresses"], "IsVerified": false, "IsFabricated": true, "IsSensitive": false,
+   "IsRetired": false, "IsSpamList": true, "IsMalware": false, "IsStealerLog": false},
+  {"Name": "StealerDemo", "Title": "Stealer Demo", "Domain": "", "BreachDate": "2026-06-01",
+   "AddedDate": "2026-06-03T08:00:00Z", "PwnCount": 50, "Description": "Metadane stealer logu.",
+   "DataClasses": ["Passwords", "Auth tokens"], "IsVerified": true, "IsFabricated": false, "IsSensitive": false,
+   "IsRetired": false, "IsSpamList": false, "IsMalware": true, "IsStealerLog": true}
+]

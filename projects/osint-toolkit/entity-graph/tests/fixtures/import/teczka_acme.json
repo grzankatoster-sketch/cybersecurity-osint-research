@@ -1,0 +1,140 @@
+{
+ "schema": "teczka-spolki/v1",
+ "job_id": "j-1",
+ "query": {
+  "type": "krs",
+  "value": "0000999001"
+ },
+ "as_of": "2026-10-03",
+ "generated_at": "2026-10-03T07:30:00+00:00",
+ "outcome": {
+  "state": "PARTIAL",
+  "reason": "vat: błąd źródła",
+  "checks_done": 1,
+  "checks_planned": 2
+ },
+ "legal_status": {
+  "label": "Podmiot czynny, brak wpisów w dziale 6",
+  "severity": "ok",
+  "krs_as_of": "01.10.2026",
+  "signals": []
+ },
+ "checks": [
+  {
+   "check": "krs",
+   "label": "KRS",
+   "status": "FOUND",
+   "reason": "ok"
+  },
+  {
+   "check": "vat",
+   "label": "Wykaz VAT",
+   "status": "ERROR",
+   "reason": "timeout"
+  },
+  {
+   "check": "krs_s",
+   "label": "KRS S",
+   "status": "NOT_EXECUTED",
+   "reason": "niepotrzebne"
+  }
+ ],
+ "facts": [
+  {
+   "check": "krs",
+   "predicate": "krs.nazwa",
+   "label": "krs.nazwa",
+   "value": "ACME TESTOWA SPÓŁKA AKCYJNA",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "krs",
+   "predicate": "krs.nip",
+   "label": "krs.nip",
+   "value": "5260000007",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "krs",
+   "predicate": "krs.regon",
+   "label": "krs.regon",
+   "value": "12345678500000",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "krs",
+   "predicate": "krs.adres",
+   "label": "krs.adres",
+   "value": "UL. PRÓBNA 1, 20-001 LUBLIN",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "krs",
+   "predicate": "krs.forma_prawna",
+   "label": "krs.forma_prawna",
+   "value": "SPÓŁKA AKCYJNA",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "kw",
+   "predicate": "kw.dzial1.dzialka",
+   "label": "kw.dzial1.dzialka",
+   "value": "141201_1.0001.6509",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  },
+  {
+   "check": "krs",
+   "predicate": "krs.organ_liczba_czlonkow_dane_zanonimizowane",
+   "label": "krs.organ_liczba_czlonkow_dane_zanonimizowane",
+   "value": "2",
+   "source": "krs_odpis",
+   "locator": "$.x",
+   "evidence_hash": "abc",
+   "observed_at": "2026-10-03T07:00:00+00:00",
+   "valid_from": null,
+   "valid_to": null
+  }
+ ],
+ "comparisons": [],
+ "discrepancies": [],
+ "discrepancies_checked": false,
+ "limitations": [
+  "x"
+ ],
+ "billing": {
+  "charged_grosze": 0,
+  "max_price_grosze": 0,
+  "price_version": "1",
+  "policy_version": "1"
+ }
+}

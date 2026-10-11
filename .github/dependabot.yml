@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directories:
+      - /projects/osint-toolkit/dns-audit
+      - /projects/osint-toolkit/exif-map
+      - /projects/osint-toolkit/osint-mcp
+      - /projects/osint-toolkit/phone-check
+      - /projects/osint-toolkit/username-engine
+      - /projects/osint-toolkit/ci
+      - /projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5

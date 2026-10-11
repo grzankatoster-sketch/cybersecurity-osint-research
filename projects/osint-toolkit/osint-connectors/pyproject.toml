@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "osint-connectors"
+version = "0.1.0"
+description = "Clean-room rdzeń konektorów OSINT (Status FOUND/NOT_FOUND/UNKNOWN/ERROR, async runner, polityka źródeł)."
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

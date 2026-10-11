@@ -1,0 +1,20 @@
+[project]
+name = "exif-map"
+version = "0.1.0"
+description = "Metadane i geotagi wlasnych zdjec: EXIF/GPS, mapa HTML, usuwanie metadanych (OPSEC). Tylko pliki lokalne."
+requires-python = ">=3.12"
+dependencies = ["Pillow>=10", "folium>=0.17"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+heic = ["pillow-heif>=0.16"]
+
+[project.scripts]
+exif-map = "exif_map.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

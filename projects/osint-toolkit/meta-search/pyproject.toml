@@ -1,0 +1,13 @@
+[project]
+name = "meta-search"
+version = "0.1.0"
+description = "Wyszukiwanie w serwisach Meta: oficjalne Threads API, wspolny kontrakt wyniku (bez zaleznosci)"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

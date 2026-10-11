@@ -1,0 +1,28 @@
+{
+  "maigret": {
+    "total": 7922,
+    "IMPORTED": 7814,
+    "UNSUPPORTED": 44,
+    "INVALID": 64,
+    "disabled_imported": 683,
+    "source_sha256": "fd0902ca6b4be44bd13ca459156a73440580ca829588e1e5bae7255c039f7167"
+  },
+  "sherlock": {
+    "total": 481,
+    "IMPORTED": 455,
+    "INVALID": 26,
+    "disabled_imported": 0,
+    "source_sha256": "3fdfc6694c5cd99798881215554b09e617c6d5284a6219fae309882566a9fb30"
+  },
+  "whatsmyname": {
+    "total": 717,
+    "IMPORTED": 687,
+    "INVALID": 30,
+    "disabled_imported": 1,
+    "source_sha256": "507d2f8aa5b1297ae2d713634ccc7ce08357fed85b1d40130585810f456c1cfe"
+  },
+  "conflict_groups": 756,
+  "blackbird_metadata": {
+    "IMPORTED": 17
+  }
+}

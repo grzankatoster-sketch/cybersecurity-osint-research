@@ -1,0 +1,101 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  osint-toolkit:
+    name: toolkit / ${{ matrix.package }} / py${{ matrix.python }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.12", "3.13"]
+        package:
+          - dns-audit
+          - site-audit
+          - net-intel
+          - hibp-monitor
+          - phone-check
+          - exif-map
+          - org-intel
+          - entity-graph
+          - meta-search
+          - osint-mcp
+          - username-engine
+    defaults:
+      run:
+        working-directory: projects/osint-toolkit/${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Test (offline; no network access is required)
+        run: python -m pytest -q -p no:cacheprovider
+
+  osint-toolkit-extra:
+    name: toolkit / connectors, panel, pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        working-directory: projects/osint-toolkit
+        run: |
+          python -m pip install -e ./osint-connectors -e "./org-intel[dev]" -e "./entity-graph[dev]" -e "./hibp-monitor[dev]" -e "./meta-search[dev]"
+          python -m pip install -r ci/requirements.txt
+      - name: osint-connectors
+        working-directory: projects/osint-toolkit/osint-connectors
+        run: python -m pytest -q -p no:cacheprovider
+      - name: panel
+        working-directory: projects/osint-toolkit/panel
+        run: python -m pytest -q -p no:cacheprovider
+      - name: Pipeline checks and E2E (osint-poland stage is skipped in the public repo)
+        working-directory: projects/osint-toolkit
+        run: python ci/run_checks.py
+
+  ultimate-username-engine:
+    name: ultimate-username-engine / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    defaults:
+      run:
+        working-directory: projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: |
+          python -m pip install -r requirements-tested.txt
+          python -m pip install -e ".[dev,socks]"
+          # Pillow is used by image-related tests but is not declared in pyproject.toml (see SECURITY_REVIEW.md)
+          python -m pip install Pillow
+      - name: Unit, integration, regression and OPSEC tests
+        run: python -m pytest -q -p no:cacheprovider
+      - name: Lint (non-blocking: 38 pre-existing findings, mostly E501 in tools/; see docs/SECURITY_REVIEW.md)
+        continue-on-error: true
+        run: python -m ruff check src tests tools
+      - name: Benchmark harness tests (no ground truth required)
+        working-directory: projects/ultimate-username-engine
+        run: python -m pytest -q -p no:cacheprovider bench/tests

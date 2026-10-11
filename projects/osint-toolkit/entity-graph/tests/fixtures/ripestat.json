@@ -1,0 +1,1 @@
+{"status":"ok","data":{"is_less_specific":false,"announced":true,"asns":[{"asn":13335,"holder":"CLOUDFLARENET - Cloudflare, Inc."}],"resource":"1.1.1.0/24","type":"prefix","block":{"resource":"1.0.0.0/8","desc":"APNIC","name":"IANA"}}}

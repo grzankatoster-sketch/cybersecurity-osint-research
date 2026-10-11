@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv*/
+venv/
+build/
+dist/
+.pytest_cache/
+.pytest*/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Secrets and local configuration - never commit
+.env
+.env.*
+!.env.example
+!env.*.example
+*.pem
+*.key
+.webui_secret_key
+api-keys.yaml
+
+# Research output, case files and logs (may contain personal data)
+wyniki/
+results/
+artifacts/
+metryki/*.json
+**/sprawy/
+**/cases/
+*.log
+backups*/
+logs*/
+
+# Generated third-party catalogues (rebuild locally; see NOTICE.md)
+projects/osint-toolkit/username-engine/data/
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/data/catalog.json
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/data/import-records.json
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/data/conflicts.json
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/data/blackbird-metadata.json
+# Private regression corpora and labelled ground truth (real profiles)
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/tests/golden_detection/
+projects/ultimate-username-engine/ULTIMATE_USERNAME_ENGINE/tests/recall_detection/
+projects/ultimate-username-engine/bench/ground_truth/*.jsonl
+projects/ultimate-username-engine/bench/ground_truth/dev_batches/
+projects/ultimate-username-engine/bench/results/
+
+# Locally installed third-party OSINT tools
+projects/osint-toolkit/narzedzia/*-venv/
+projects/osint-toolkit/narzedzia/*-src/
+projects/osint-toolkit/narzedzia/exiftool/
+projects/osint-toolkit/narzedzia/dig/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

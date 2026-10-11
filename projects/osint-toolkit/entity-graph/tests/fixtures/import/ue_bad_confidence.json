@@ -1,0 +1,1 @@
+{"query":"zz","results":{"zz":[{"site":"A","url":"https://a.example/zz","status":"FOUND","confidence":"bardzo","reason":"x"},{"site":"B","url":"https://b.example/zz","status":"FOUND","confidence":NaN,"reason":"x"},{"site":"C","url":"https://c.example/zz","status":"FOUND","confidence":0.55,"reason":"x"}]}}

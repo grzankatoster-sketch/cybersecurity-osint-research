@@ -1,0 +1,33 @@
+{
+ "result": {
+  "subject": {
+   "name": "ACME TESTOWA SA",
+   "nip": "5260000007",
+   "statusVat": "Czynny",
+   "regon": "123456785",
+   "pesel": null,
+   "krs": "0000999001",
+   "residenceAddress": null,
+   "workingAddress": "PRÓBNA 1/2, 20-001 LUBLIN",
+   "representatives": [
+    {
+     "companyName": null,
+     "firstName": "Jan",
+     "lastName": "Testowy",
+     "nip": null,
+     "pesel": null
+    }
+   ],
+   "authorizedClerks": [],
+   "partners": [],
+   "registrationLegalDate": "2010-01-01",
+   "accountNumbers": [
+    "61109010140000071219812874",
+    "PL 27 1140 2004 0000 3002 0135 5387"
+   ],
+   "hasVirtualAccounts": false
+  },
+  "requestId": "SYNTH-1",
+  "requestDateTime": "03-10-2026 07:24:10"
+ }
+}

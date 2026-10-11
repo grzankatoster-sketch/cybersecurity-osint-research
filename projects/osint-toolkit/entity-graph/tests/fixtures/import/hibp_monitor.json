@@ -1,0 +1,29 @@
+{
+ "state_file": null,
+ "domains": [
+  {
+   "domain": "acme-testowa.example",
+   "first_run": true,
+   "total_breaches": 1,
+   "new": [
+    {
+     "name": "TestBreachA",
+     "title": "Test Breach A",
+     "domain": "serwis-a.example",
+     "breach_date": "2020-05-01",
+     "added_date": "2020-06-01T00:00:00Z",
+     "pwn_count": 1200,
+     "data_classes": [
+      "Email addresses",
+      "Passwords"
+     ],
+     "is_verified": true,
+     "is_sensitive": false,
+     "is_retired": false,
+     "is_spam_list": false,
+     "description": "Synthetic."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {"key": "s1", "name": "Odpis z KRS (syntetyczny)", "url": "https://ekrs.example.test/odpis/0000123456?utm_source=newsletter#sekcja-1",
+     "source_type": "official_registry", "license": "dane publiczne", "retrieved_at": "2026-10-05T10:00:00Z", "reliability": "high"},
+    {"key": "s2", "name": "Strona firmy: zarząd", "url": "https://www.example.test/zarzad/",
+     "source_type": "company_website", "license": "first-party", "retrieved_at": "2026-10-05T10:05:00Z", "reliability": "high"},
+    {"key": "s3", "name": "Komunikat CERT (syntetyczny)", "url": "https://cert.example.test/komunikaty/2026-001",
+     "source_type": "cert_advisory", "license": "CC BY 4.0", "retrieved_at": "2026-10-05T10:10:00Z", "reliability": "high"},
+    {"key": "s4", "name": "Notatka ręczna", "url": "https://notes.example.test/n/1",
+     "source_type": "manual", "license": "", "retrieved_at": "2026-10-05T10:15:00Z", "reliability": "low"}
+  ],
+  "organizations": [
+    {"legal_name": "Example Sp. z o.o.", "krs": "0000123456", "nip": "527-100-12-38", "regon": "360123459",
+     "official_domain": "https://www.Example.test/", "sources": ["s1"], "confidence": "high", "derivation": "direct",
+     "evidence_url": "https://ekrs.example.test/odpis/0000123456"}
+  ],
+  "domains": [
+    {"domain": "shop.example.test", "organization": "0000123456", "sources": ["s2"]}
+  ],
+  "persons": [
+    {"name": "Jan Kowalski", "role": "Prezes Zarządu", "organization": "0000123456",
+     "public_email": "jan.kowalski@example.test", "sources": ["s2"],
+     "evidence_quote": "Prezes Zarządu: Jan Kowalski, jan.kowalski@example.test"}
+  ],
+  "incidents": [
+    {"name": "CertIncident", "incident_date": "2026-09-20", "published_date": "2026-09-25",
+     "affected_domain": "example.test", "affected_accounts_count": 100, "data_classes": ["Email addresses"],
+     "status": ["verified"], "description": "Incydent opisany w komunikacie CERT.", "sources": ["s3"]}
+  ]
+}

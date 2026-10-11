@@ -1,0 +1,12 @@
+# Skopiuj do config.toml i wpisz WLASNE domeny (serwisy, ktore sam prowadzisz).
+# Endpoint /breaches?domain= zwraca wycieki, w ktorych serwis na tej domenie byl ZRODLEM.
+
+# Wymagany przez HIBP User-Agent. Wpisz cos, co Cie identyfikuje.
+user_agent = "hibp-monitor/0.1 (monitor wlasnych domen)"
+
+# Plik stanu (wzgledem tego pliku konfiguracyjnego).
+state_file = "state.json"
+
+domains = [
+  "example.com",
+]

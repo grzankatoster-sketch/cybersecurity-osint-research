@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel OSINT</title>
+<style>
+  :root {
+    --bg: #f4f3ef; --panel: #ffffff; --ink: #1c1d1f; --muted: #6b6d72; --line: #dedcd5;
+    --accent: #1f5c4a; --accent-ink: #ffffff; --warn: #9a5b00; --bad: #a3271f; --code: #f0eee8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141516; --panel: #1d1f21; --ink: #e8e6e1; --muted: #9a9ca1; --line: #303236;
+            --accent: #6fc2a4; --accent-ink: #0f1a16; --warn: #e0a64a; --bad: #ef7d73; --code: #17181a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.5 "Segoe UI", system-ui, sans-serif; }
+  header { display: flex; align-items: baseline; gap: 16px; padding: 18px 24px 0; flex-wrap: wrap; }
+  h1 { font-size: 18px; margin: 0; letter-spacing: .02em; }
+  header p { margin: 0; color: var(--muted); font-size: 13px; }
+  nav { display: flex; gap: 4px; padding: 14px 24px 0; border-bottom: 1px solid var(--line); overflow-x: auto; }
+  nav button { background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted);
+               padding: 8px 14px; font: inherit; cursor: pointer; white-space: nowrap; }
+  nav button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+  main { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: 20px; padding: 20px 24px; }
+  @media (max-width: 820px) { main { grid-template-columns: 1fr; padding: 16px; } header, nav { padding-left: 16px; padding-right: 16px; } }
+  section.tool { display: none; } section.tool.on { display: block; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  .card h2 { font-size: 15px; margin: 0 0 4px; }
+  .hint { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+  form { display: grid; gap: 10px; margin-bottom: 18px; }
+  form:last-child { margin-bottom: 0; }
+  label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+  input[type=text], input[type=password], input[type=number], select {
+    font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+    border-radius: 6px; padding: 8px 10px; width: 100%; }
+  input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .check { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+  .row { display: flex; gap: 8px; }
+  .row > * { flex: 1; }
+  button.go { font: inherit; font-weight: 600; background: var(--accent); color: var(--accent-ink);
+              border: 0; border-radius: 6px; padding: 9px 14px; cursor: pointer; justify-self: start; }
+  button.go:disabled { opacity: .55; cursor: progress; }
+  .sub { font-size: 13px; font-weight: 600; margin: 4px 0 0; }
+  #out .meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+  .badge { font-weight: 600; padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; }
+  .ok { color: var(--accent); } .bad { color: var(--bad); } .warn { color: var(--warn); }
+  .wait { color: var(--muted); margin: 0; }
+  pre { background: var(--code); border: 1px solid var(--line); border-radius: 6px; padding: 12px;
+        margin: 0 0 12px; overflow: auto; max-height: 52vh; font: 12.5px/1.45 Consolas, "Cascadia Mono", monospace; white-space: pre-wrap; word-break: break-word; }
+  pre.err { color: var(--bad); }
+  iframe { width: 100%; height: 60vh; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+  a { color: var(--accent); }
+  .empty { color: var(--muted); }
+  table.raporty { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+  table.raporty th, table.raporty td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+  table.raporty tbody tr { cursor: pointer; }
+  table.raporty tbody tr:hover { background: var(--bg); }
+  ul.teczki { list-style: none; padding: 0; margin: 6px 0 10px; display: grid; gap: 4px; font-size: 13px; }
+  ul.teczki button { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-align: left; }
+  .next { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 8px; }
+  .pivots { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+  ul.outside { margin: 4px 0 0; padding-left: 20px; font-size: 13px; color: var(--muted); }
+  footer { padding: 0 24px 24px; color: var(--muted); font-size: 12px; }
+  .sp-block { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 8px; }
+  .sp-block h3 { font-size: 14px; margin: 0 0 6px; }
+  table.sp { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.sp th, table.sp td { text-align: left; vertical-align: top; padding: 4px 6px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+  .sp-decide { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .sp-decide input, .sp-decide select { font: inherit; font-size: 12px; padding: 4px 6px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink); min-width: 0; flex: 1 1 160px; }
+  .sp-decide button { font: inherit; font-size: 12px; padding: 4px 8px; border-radius: 4px; border: 1px solid var(--accent); background: none; color: var(--accent); cursor: pointer; }
+  .sp-note { color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
+  textarea { font: inherit; font-size: 13px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); resize: vertical; min-height: 96px; }
+  textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .sp-card { border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; margin: 8px 0; overflow-wrap: anywhere; }
+  .sp-card ul { margin: 4px 0; padding-left: 18px; font-size: 12px; }
+  .sp-card q { font-style: italic; }
+  .lab-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .lab-card { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; }
+  .lab-card h3 { font-size: 14px; margin: 0 0 6px; }
+  .lab-card ul { margin: 0; padding-left: 20px; font-size: 13px; }
+  .lab-card li + li { margin-top: 6px; }
+  .lab-wide { grid-column: 1 / -1; }
+  details.envelope { margin: 0 0 12px; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; }
+  details.envelope summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+  details.envelope table { margin-top: 6px; }
+  table.audit td:nth-child(-n+5), table.audit th:nth-child(-n+5) { white-space: nowrap; overflow-wrap: normal; }
+  table.audit td:last-child { font: 12px/1.4 Consolas, "Cascadia Mono", monospace; }
+  @media (max-width: 820px) { table.audit td:nth-child(-n+5) { white-space: normal; } }
+  /* Laboratorium to widok statusu, nie narzedzie: cala szerokosc, bez pustego panelu wyniku */
+  main:has(#tab-lab.on) { grid-template-columns: 1fr; }
+  main:has(#tab-lab.on) #out { display: none; }
+  #tab-lab .badge { white-space: nowrap; }
+  .lab-legend { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 10px; margin: 0; font-size: 13px; }
+  .lab-legend dd { margin: 0; }
+  @media (max-width: 820px) { .lab-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Panel OSINT</h1>
+  <p>Lokalnie (127.0.0.1). Tylko dane własne, firmowe lub jawne, w ramach zlecenia.</p>
+</header>
+<nav role="tablist">
+  <button role="tab" data-tab="username" aria-selected="true">Nazwa użytkownika</button>
+  <button role="tab" data-tab="meta" aria-selected="false">Meta</button>
+  <button role="tab" data-tab="email" aria-selected="false">E-mail i domena</button>
+  <button role="tab" data-tab="dns" aria-selected="false">Domena (DNS)</button>
+  <button role="tab" data-tab="phone" aria-selected="false">Telefon</button>
+  <button role="tab" data-tab="exif" aria-selected="false">Zdjęcia (EXIF)</button>
+  <button role="tab" data-tab="skan" aria-selected="false">Skan celu</button>
+  <button role="tab" data-tab="sprawa" aria-selected="false">Sprawa</button>
+  <button role="tab" data-tab="lab" aria-selected="false">Laboratorium</button>
+  <button role="tab" data-tab="raporty" aria-selected="false">Raporty</button>
+</nav>
+<main>
+  <div>
+    <section class="tool on card" id="tab-username">
+      <h2>Wyszukiwanie po nazwie użytkownika</h2>
+      <p class="hint">Nasz silnik (~5800 serwisów, ocena pewności, kraj i powiązania kont). Ta sama nazwa nie oznacza tej samej osoby: trafienie to trop, nie dowód.</p>
+      <p class="hint">Linki do profili w raporcie otwieraj w Tor Browserze. Zwykła przeglądarka pokaże serwisowi Twoje IP.</p>
+      <form data-action="username" data-long="Czas przez Tora (pomiar): szybki ok. 9 min, standard ok. 20 min, pełny ok. 90 min. Nie zamykaj karty.">
+        <label>Nazwa użytkownika lub „Imię Nazwisko” <input type="text" name="username" placeholder="mozilla albo Jan Kowalski" maxlength="100" required></label>
+        <label>Poziom
+          <select name="level">
+            <option value="quick">Szybki (ok. 9 min przez Tora): tylko archiwum Wayback i linki do wyszukiwarek; serwisy nie widzą żadnego zapytania</option>
+            <option value="standard" selected>Standard (ok. 20 min przez Tora): ok. 800 serwisów społecznościowych i polskich + archiwum</option>
+            <option value="full">Pełny (ok. 90 min przez Tora): cała baza ok. 5100 serwisów</option>
+          </select>
+        </label>
+        <label>Kanał
+          <select name="channel">
+            <option value="tor" selected>Tor (zalecane): serwisy nie widzą Twojego IP; wymaga włączonego Tor Browsera</option>
+            <option value="direct">Bezpośrednio: szybciej, ale każdy serwis widzi Twoje IP</option>
+          </select>
+        </label>
+        <label>Tagi (opcjonalnie, szybciej) <input type="text" name="tags" placeholder="social,pl" maxlength="100"></label>
+        <label>Rok / dopiski liczbowe (opcjonalnie) <input type="text" name="years" placeholder="1990,90" maxlength="50" inputmode="numeric"></label>
+        <label class="check"><input type="checkbox" name="only"> Tylko ta nazwa (bez wariantów)</label>
+        <label class="check"><input type="checkbox" name="wayback"> Archiwum Wayback (usunięte profile)</label>
+        <input type="hidden" name="limit" value="">
+        <button class="go">Szukaj</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-meta">
+      <h2>Meta: Threads, Instagram, Facebook</h2>
+      <p class="hint">Każdy wynik ma oznaczone źródło: oficjalne API albo link do ręcznego sprawdzenia. Zgodny nick nie potwierdza tożsamości. Brak wyniku nie dowodzi braku konta.</p>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="threads_profile">
+        <p class="sub">Threads API: publiczny profil po dokładnym nicku</p>
+        <label>Nick <input type="text" name="username" placeholder="meta" maxlength="31" required></label>
+        <p class="hint" style="margin:0">Tylko publiczne profile z co najmniej 100 obserwującymi. Bez zatwierdzenia przez Meta (App Review) działa wyłącznie dla kont Meta.</p>
+        <button class="go">Sprawdź w API</button>
+      </form>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="threads_search">
+        <p class="sub">Threads API: publiczne posty po frazie</p>
+        <label>Fraza lub tag <input type="text" name="query" placeholder="osint" maxlength="200" required></label>
+        <div class="row">
+          <label>Kolejność
+            <select name="search_type"><option value="TOP" selected>najpopularniejsze</option><option value="RECENT">najnowsze</option></select>
+          </label>
+          <label>Limit <input type="number" name="limit" value="25" min="1" max="100"></label>
+        </div>
+        <label>Tylko autor (opcjonalnie) <input type="text" name="author" placeholder="nick" maxlength="31"></label>
+        <p class="hint" style="margin:0">Bez zatwierdzonego uprawnienia threads_keyword_search API przeszukuje tylko posty właściciela tokenu.</p>
+        <button class="go">Szukaj w API</button>
+      </form>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="instagram_profile">
+        <p class="sub">Instagram API: konto profesjonalne po nicku (Business Discovery)</p>
+        <div class="row">
+          <label>Nick <input type="text" name="username" placeholder="natgeo" maxlength="31" required></label>
+          <label>Ostatnie media <input type="number" name="media" value="0" min="0" max="50"></label>
+        </div>
+        <p class="hint" style="margin:0">Widzi tylko konta profesjonalne (Business/Creator), nie prywatne ani osobiste: brak wyniku nie dowodzi braku konta. Wymaga tokenu i numeru konta właściciela (INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID).</p>
+        <button class="go">Sprawdź w API</button>
+      </form>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="facebook_page">
+        <p class="sub">Facebook API: publiczne dane Strony po id lub nazwie</p>
+        <label>Id lub nazwa Strony <input type="text" name="page" placeholder="natgeo" maxlength="100" required></label>
+        <p class="hint" style="margin:0">Tylko Strony (nie profile osób prywatnych). Cudze Strony wymagają funkcji Page Public Content Access / Page Public Metadata Access zatwierdzonej przez Meta (App Review); bez niej wynik to brak uprawnień. Token: FACEBOOK_ACCESS_TOKEN.</p>
+        <button class="go">Sprawdź w API</button>
+      </form>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="links">
+        <p class="sub">Linki do ręcznego sprawdzenia (Threads, Instagram, Facebook)</p>
+        <label>Nick <input type="text" name="username" placeholder="natgeo" maxlength="31" required></label>
+        <p class="hint" style="margin:0">Nic nie jest pobierane automatycznie: otwierasz strony sam. Strona logowania albo błąd w przeglądarce nie oznacza braku konta.</p>
+        <button class="go">Pokaż linki</button>
+      </form>
+      <form data-action="meta">
+        <input type="hidden" name="op" value="config">
+        <p class="sub">Konfiguracja API</p>
+        <p class="hint" style="margin:0">Tokeny tylko po stronie panelu: zmienne THREADS_ACCESS_TOKEN, INSTAGRAM_ACCESS_TOKEN + INSTAGRAM_USER_ID, FACEBOOK_ACCESS_TOKEN albo plik poza repozytorium (~/.osint/meta.env). Wartości nie są pokazywane.</p>
+        <button class="go">Sprawdź konfigurację</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-email">
+      <h2>E-mail i domena</h2>
+      <p class="hint">Tylko własne domeny lub ze zgodą właściciela. Wynik to trop, nie dowód.</p>
+      <form data-action="harvester">
+        <p class="sub">theHarvester: subdomeny i adresy z publicznych źródeł</p>
+        <label>Domena <input type="text" name="domain" placeholder="twojadomena.pl" required></label>
+        <div class="row">
+          <label style="flex:2">Źródło (bez klucza API)
+            <select name="source">
+              <option value="crtsh,certspotter,hackertarget" selected>crtsh + certspotter + hackertarget (zalecane)</option>
+              <option value="crtsh">crtsh (certyfikaty)</option>
+              <option value="certspotter">certspotter</option>
+              <option value="rapiddns">rapiddns</option>
+              <option value="otx">otx</option>
+              <option value="urlscan">urlscan</option>
+              <option value="hackertarget">hackertarget</option>
+              <option value="subdomaincenter">subdomaincenter</option>
+              <option value="thc">thc</option>
+              <option value="duckduckgo">duckduckgo</option>
+              <option value="yahoo">yahoo</option>
+              <option value="waybackarchive">waybackarchive</option>
+              <option value="hudsonrock">hudsonrock</option>
+              <option value="commoncrawl">commoncrawl</option>
+            </select>
+          </label>
+          <label style="flex:1">Limit <input type="number" name="limit" value="100" min="1" max="2000"></label>
+        </div>
+        <button class="go">Szukaj</button>
+      </form>
+      <form data-action="hibp_domain">
+        <p class="sub">HIBP: wycieki źródłowe domeny</p>
+        <label>Domena <input type="text" name="domain" placeholder="adobe.com" required></label>
+        <button class="go">Sprawdź</button>
+      </form>
+      <form data-action="hibp_password">
+        <p class="sub">HIBP: hasło w wyciekach</p>
+        <label>Hasło <input type="password" name="password" autocomplete="off" required></label>
+        <p class="hint" style="margin:0">Oficjalne API. Do sieci idzie tylko 5 znaków skrótu SHA-1. Tylko własne hasła.</p>
+        <button class="go">Sprawdź</button>
+      </form>
+      <form data-action="hibp_catalog">
+        <p class="sub">HIBP: najnowsze wycieki w katalogu</p>
+        <label>Ile pozycji <input type="number" name="limit" value="15" min="1" max="500"></label>
+        <button class="go">Pokaż</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-dns">
+      <h2>Audyt DNS domeny</h2>
+      <p class="hint">SPF, DMARC, DKIM, DNSSEC, MTA-STS, CAA. Tylko publiczne rekordy.</p>
+      <form data-action="dns">
+        <label>Domena <input type="text" name="domain" placeholder="example.com" required></label>
+        <label>Selektory DKIM (opcjonalnie) <input type="text" name="selectors" placeholder="google,selector1"></label>
+        <label>Kanał
+          <select name="channel">
+            <option value="tor" selected>Tor (zalecane): zapytania DNS-over-HTTPS przez Tora; dostawca internetu nie widzi domeny</option>
+            <option value="direct">Bezpośrednio: Twój resolver i dostawca internetu widzą domenę</option>
+          </select>
+        </label>
+        <button class="go">Sprawdź</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-phone">
+      <h2>Numer telefonu</h2>
+      <p class="hint">Offline: format, kraj, typ linii i plan numeracyjny. Operator to pierwotny przydział — mógł być przeniesiony. Panel nie szuka numeru w sieci i nie lokalizuje telefonu.</p>
+      <form data-action="phone">
+        <div class="row">
+          <label style="flex:3">Numer <input type="text" name="number" placeholder="603 123 456" required></label>
+          <label style="flex:1">Region <input type="text" name="region" value="PL" maxlength="2"></label>
+        </div>
+        <button class="go">Sprawdź</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-exif">
+      <h2>Metadane zdjęć</h2>
+      <p class="hint">Plik lub folder na tym komputerze. Analiza lokalna, mapa GPS jeśli są geotagi. Na końcu wyniku: gdzie ręcznie sprawdzić pochodzenie zdjęcia (TinEye, Google Lens, Bing, Yandex) i miejsce z GPS (Copernicus). Panel niczego tam nie wysyła; wgrywaj tylko kopie bez metadanych i nie szukaj po twarzach.</p>
+      <form data-action="exif">
+        <label>Ścieżka <input type="text" name="path" placeholder="C:\Users\...\Zdjecia" required></label>
+        <button class="go">Analizuj</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-skan">
+      <h2>Skan celu</h2>
+      <p class="hint">Jeden cel, kilka narzędzi po kolei i raport zbiorczy. Domena: DNS, HIBP, theHarvester. E-mail: DNS i HIBP domeny (część przed @ nie jest wysyłana). Login: nazwa użytkownika i linki Meta. Błąd narzędzia nie oznacza braku wyniku.</p>
+      <form data-action="skan_celu" data-long="Skan obejmuje kilka narzędzi, może potrwać kilka minut.">
+        <label>Cel <input type="text" name="cel" placeholder="example.com" maxlength="253" required></label>
+        <label>Typ celu
+          <select name="typ"><option value="domena" selected>domena</option><option value="email">e-mail</option><option value="login">login</option></select>
+        </label>
+        <button class="go">Skanuj</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-sprawa">
+      <h2>Sprawa: osoby, numery, twierdzenia, kandydaci</h2>
+      <p class="hint">Sprawy leżą wyłącznie w panel/wyniki/sprawy; innych katalogów panel nie przyjmuje. Każda zmiana trafia do dziennika audytu sprawy. Kandydat profilu i twierdzenie o relacji wymagają Twojego potwierdzenia; nic nie uruchamia się samo.</p>
+      <div class="row">
+        <label style="flex:3">Sprawa <select id="sp-wybor"><option value="">(brak spraw)</option></select></label>
+      </div>
+      <div class="row" style="margin-bottom:14px">
+        <button class="go" type="button" id="sp-otworz">Otwórz</button>
+        <button class="go" type="button" id="sp-lista">Odśwież listę</button>
+      </div>
+      <datalist id="sp-osoby"></datalist>
+
+      <form data-sp-action="sprawa_nowa" data-no-case="1">
+        <p class="sub">Nowa sprawa</p>
+        <label>Nazwa katalogu <input type="text" name="sprawa" placeholder="zlecenie-2026-41" maxlength="64" required></label>
+        <label>Cel i podstawa badania (do dziennika) <input type="text" name="cel" placeholder="due diligence kontrahenta, zlecenie 2026/41" maxlength="300" required></label>
+        <label>Osoba (imię i nazwisko) <input type="text" name="osoba" placeholder="Jan Kowalski" maxlength="120" required></label>
+        <p class="hint" style="margin:0">Tworzy sprawę offline: kandydaci nazw użytkownika to hipotezy, nic nie jest wysyłane.</p>
+        <button class="go">Utwórz sprawę</button>
+      </form>
+
+      <form data-sp-action="sprawa_profile_szukaj" data-long="Wyszukiwanie wysyła najwyżej tyle zapytań do Brave Search API, ile pozwala budżet poniżej.">
+        <p class="sub">Szukaj profili po nazwisku</p>
+        <p class="hint" style="margin:0">Imię i nazwisko oraz kontekst trafiają do dostawcy wyszukiwarki (Brave Search API; klucz BRAVE_SEARCH_API_KEY czyta panel po swojej stronie, nie z formularza). Zapytania: nazwa w cudzysłowie z site:facebook.com, site:instagram.com, site:threads.com. Kanał: BRAVE_PROXY albo połączenie bezpośrednie (nie Tor). Wynik to linki do możliwych profili do Twojego przeglądu: nie wszystkie konta i nie ustalenie tożsamości. Strony profili, obrazki i podglądy nie są pobierane.</p>
+        <label>Osoba (imię i nazwisko) <input type="text" name="osoba" list="sp-osoby" maxlength="120" required></label>
+        <label>Znany kontekst (opcjonalnie, do 5 słów: miasto, firma) <input type="text" name="kontekst" maxlength="100"></label>
+        <div class="row">
+          <label>Wywołań API <input type="number" name="max_wywolan" value="6" min="1" max="12"></label>
+          <label>Wyników na wywołanie <input type="number" name="max_wynikow" value="20" min="1" max="20"></label>
+        </div>
+        <div class="row">
+          <label>Kandydatów <input type="number" name="max_kandydatow" value="50" min="1" max="100"></label>
+          <label>Czas [s] <input type="number" name="max_sekund" value="60" min="10" max="120"></label>
+        </div>
+        <p class="hint" style="margin:0">Limity egzekwuje backend: wywołań 1-12 (ponowienie też się liczy), wyników 1-20, kandydatów 1-100, czas 10-120 s. Bez stronicowania. Limit dotyczy liczby wywołań, nie kwoty.</p>
+        <label class="check"><input type="checkbox" name="dodaj"> Dopisz osobę, której nie ma w sprawie</label>
+        <button class="go">Szukaj</button>
+      </form>
+
+      <form data-sp-action="sprawa_profile_material">
+        <p class="sub">Kandydat z Twoim materiałem (bez sieci, działa bez klucza)</p>
+        <p class="hint" style="margin:0">Podaj adres i tekst, który sam skopiowałeś (do 20 000 znaków). Analiza lokalna: odnośniki, identyfikatory z adresów, wzmianka nazwy. Tekst traktujemy jako dostarczony przez Ciebie, nie jako zweryfikowaną kopię strony; tekstu nie zapisujemy: w sprawie zostaje tylko skrót i ustalenia z dosłownym dowodem. Adres z e-mailem, telefonem albo tokenem jest odrzucany.</p>
+        <label>Osoba <input type="text" name="osoba" list="sp-osoby" maxlength="120" required></label>
+        <label>Adres źródła (http/https) <input type="text" name="url" maxlength="2048" placeholder="https://www.instagram.com/..." required></label>
+        <label>Tekst źródłowy (opcjonalnie) <textarea name="tekst" maxlength="20000" rows="6"></textarea></label>
+        <label class="check"><input type="checkbox" name="dodaj"> Dopisz osobę, której nie ma w sprawie</label>
+        <button class="go">Dodaj i przeanalizuj</button>
+      </form>
+
+      <form data-sp-action="sprawa_relacja">
+        <p class="sub">Twierdzenie o relacji (wymaga potwierdzenia)</p>
+        <label>Osoba A <input type="text" name="osoba" list="sp-osoby" maxlength="120" required></label>
+        <label>Osoba A wobec osoby B
+          <select name="typ">
+            <option value="rodzic">jest rodzicem osoby B</option>
+            <option value="dziecko">jest dzieckiem osoby B</option>
+            <option value="rodzenstwo">rodzeństwo</option>
+            <option value="partner">małżonek lub partner</option>
+            <option value="inna">inna relacja (opisz niżej)</option>
+          </select>
+        </label>
+        <label>Osoba B <input type="text" name="druga_osoba" list="sp-osoby" maxlength="120" required></label>
+        <label>Opis relacji „inna” <input type="text" name="opis" maxlength="80"></label>
+        <label>Źródło: adres http(s) albo dokument:ścieżka w katalogu sprawy <input type="text" name="zrodlo" placeholder="dokument:dokumenty/akt.pdf" maxlength="500" required></label>
+        <label>Dowód: co źródło mówi o relacji <input type="text" name="dowod" maxlength="500" required></label>
+        <label>Fragment lub notatka (opcjonalnie) <input type="text" name="fragment" maxlength="300"></label>
+        <label class="check"><input type="checkbox" name="dodaj"> Dopisz osobę, której nie ma w sprawie</label>
+        <p class="hint" style="margin:0">Zapis informacji ze źródła, nie ustalenie: wspólne nazwisko, adres czy numer niczego tu nie dodają. Druga osoba nie jest badana.</p>
+        <button class="go">Zapisz twierdzenie</button>
+      </form>
+
+      <form data-sp-action="sprawa_telefon">
+        <p class="sub">Kontekst numeru (plan numeracyjny, offline)</p>
+        <div class="row">
+          <label style="flex:3">Numer <input type="text" name="numer" placeholder="603 123 456" maxlength="40" required></label>
+          <label style="flex:1">Region <input type="text" name="region" value="PL" maxlength="2"></label>
+        </div>
+        <p class="hint" style="margin:0">Region planu numeracyjnego to obszar przydziału puli numerów, nie miejsce urządzenia. Numer nie jest wiązany z osobą.</p>
+        <button class="go">Sprawdź i dołącz do sprawy</button>
+      </form>
+
+      <form data-sp-action="sprawa_telefon_reczny">
+        <p class="sub">Operator z ręcznej weryfikacji (osobna obserwacja)</p>
+        <label>Numer (już w sprawie) <input type="text" name="numer" maxlength="40" required></label>
+        <label>Operator odczytany przez Ciebie <input type="text" name="operator_aktualny" maxlength="80" required></label>
+        <label>Źródło weryfikacji <input type="text" name="zrodlo" placeholder="https://numeracja.uke.gov.pl/" maxlength="500" required></label>
+        <label>Dzień weryfikacji <input type="date" name="data" required></label>
+        <button class="go">Dopisz obserwację</button>
+      </form>
+
+      <form data-sp-action="sprawa_kandydaci" data-long="Runda skanuje serwisy przez username-engine, może potrwać kilka minut.">
+        <p class="sub">Runda kandydatów profili (username-engine)</p>
+        <p class="hint" style="margin:0">Jedno kliknięcie = jedna runda w budżecie poniżej. Trafienia to kandydaci do Twojego przeglądu; brak trafień albo błąd serwisu nic nie mówi o osobie.</p>
+        <div class="row">
+          <label>Osoba <input type="text" name="osoba" list="sp-osoby" maxlength="120"></label>
+          <label>albo nazwa użytkownika <input type="text" name="nazwa" maxlength="100"></label>
+        </div>
+        <label>Tylko te nazwy osoby (po przecinku, opcjonalnie) <input type="text" name="nazwy" maxlength="300"></label>
+        <div class="row">
+          <label>Nazw <input type="number" name="max_nazw" value="3" min="1" max="12"></label>
+          <label>Zapytań <input type="number" name="max_zapytan" value="3" min="1" max="10"></label>
+          <label>Koszt <input type="number" name="max_koszt" value="15" min="1" max="50"></label>
+        </div>
+        <div class="row">
+          <label>Czas [s] <input type="number" name="max_sekund" value="600" min="30" max="1800"></label>
+          <label>Rund w sprawie <input type="number" name="max_rund" value="3" min="1" max="10"></label>
+          <label>Serwisów <input type="number" name="limit" min="1" max="10000" placeholder="wszystkie"></label>
+        </div>
+        <label>Tagi (opcjonalnie) <input type="text" name="tags" placeholder="social,pl" maxlength="100"></label>
+        <button class="go">Uruchom rundę</button>
+      </form>
+    </section>
+
+    <section class="tool card" id="tab-lab">
+      <h2>Laboratorium: ustalenia i blokery</h2>
+      <p class="hint">Status projektu z kontrolowanego przeglądu. Szczegółowe dowody są w raportach audytowych; ta zakładka nie pokazuje sekretów ani danych spraw.</p>
+      <div id="lab-status" class="empty">Ładowanie statusu…</div>
+    </section>
+
+    <section class="tool card" id="tab-raporty">
+      <h2>Archiwum raportów</h2>
+      <p class="hint">Zapisane raporty, najnowsze na górze. Teczka celu pokazuje, które narzędzia już go sprawdziły. Kliknij wiersz, aby otworzyć podgląd.</p>
+      <button class="go" type="button" id="rap-odswiez">Odśwież</button>
+      <p class="sub">Teczki celów</p>
+      <ul class="teczki" id="rap-cele"></ul>
+      <p class="sub" id="rap-tytul">Raporty</p>
+      <table class="raporty">
+        <thead><tr><th>Data</th><th>Narzędzie</th><th>Cel</th><th>KB</th><th>Status</th></tr></thead>
+        <tbody id="rap-lista"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <div class="card" id="out" aria-live="polite">
+    <p class="empty">Wybierz narzędzie i uruchom sprawdzenie. Wynik pojawi się tutaj.</p>
+  </div>
+</main>
+<footer>Raporty HTML i mapy zapisują się w panel/wyniki. Naraz działa jeden długi skan nazwy użytkownika. Raporty skanów nazw kasują się po 12 h.</footer>
+
+<script nonce="__NONCE__">
+const TOKEN = "__TOKEN__";
+const out = document.getElementById("out");
+
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav button").forEach(x => x.setAttribute("aria-selected", x === b));
+  document.querySelectorAll("section.tool").forEach(s => s.classList.toggle("on", s.id === "tab-" + b.dataset.tab));
+  if (b.dataset.tab === "lab") loadLabStatus();
+}));
+
+function el(tag, attrs = {}, text) {
+  const e = document.createElement(tag);
+  Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+const META_CLS = { found: "ok", manual: "ok", no_result: "", not_configured: "warn", rate_limited: "warn" };
+const SANDBOX = "allow-scripts allow-popups allow-popups-to-escape-sandbox";
+
+function renderLabList(items) {
+  const ul = el("ul");
+  (items || []).forEach(item => ul.append(el("li", {}, item)));
+  return ul;
+}
+function renderLabStatus(data) {
+  const root = document.getElementById("lab-status");
+  root.replaceChildren();
+  root.className = "lab-grid";
+  root.append(el("p", { class: "sp-note lab-wide" }, "Aktualizacja: " + (data.updated || "nieznana")));
+  const sections = [
+    ["Gotowe", "ok", data.ready],
+    ["Ustalenia z testów i audytów", "", data.findings],
+    ["Co nas blokuje", "warn", data.blockers],
+    ["Wymagane decyzje biznesowe", "warn", data.decisions],
+    ["Granice bezpieczeństwa", "", data.guardrails],
+  ];
+  sections.forEach(([title, tone, items]) => {
+    const card = el("section", { class: "lab-card" });
+    card.append(el("h3", { class: tone }, title), renderLabList(items));
+    root.append(card);
+  });
+  if (data.statuses && data.statuses.length) {
+    const card = el("section", { class: "lab-card" });
+    const dl = el("dl", { class: "lab-legend" });
+    data.statuses.forEach(s => {
+      const dt = el("dt");
+      dt.append(el("span", { class: "badge " + (s.tone || "") }, s.label));
+      dl.append(dt, el("dd", {}, s.text));
+    });
+    card.append(el("h3", {}, "Jak czytać wynik"), dl);
+    root.append(card);
+  }
+  if (data.environment) {
+    const card = el("section", { class: "lab-card lab-wide" });
+    const env = data.environment;
+    const rows = [...(env.dependencies || []), ...(env.config || []).map(c => ({ ...c, note: c.note + (c.ok ? "" : " — nieustawione") }))];
+    const table = el("table", { class: "sp" });
+    const head = el("tr");
+    ["Element", "Stan", "Uwagi"].forEach(h => head.append(el("th", {}, h)));
+    table.append(head);
+    rows.forEach(d => {
+      const tr = el("tr");
+      const st = el("td");
+      st.append(el("span", { class: "badge " + (d.ok ? "ok" : "warn") }, d.ok ? "jest" : "brak"));
+      tr.append(el("td", {}, d.name), st, el("td", {}, d.note));
+      table.append(tr);
+    });
+    card.append(el("h3", {}, "Brakujące zależności i konfiguracja"), table, el("p", { class: "sp-note" }, env.config_note || ""));
+    root.append(card);
+  }
+  if (data.modules && data.modules.length) {
+    const card = el("section", { class: "lab-card lab-wide" });
+    const table = el("table", { class: "sp" });
+    const head = el("tr");
+    ["Przepływ", "Stan", "Uwagi"].forEach(h => head.append(el("th", {}, h)));
+    const thead = el("thead"); thead.append(head);
+    const tbody = el("tbody");
+    const TONE = { "gotowe": "ok", "częściowo": "warn", "do zrobienia": "bad" };
+    data.modules.forEach(m => {
+      const tr = el("tr");
+      const state = el("td");
+      state.append(el("span", { class: "badge " + (TONE[m.state] || "") }, m.state));
+      tr.append(el("td", {}, m.name), state, el("td", {}, m.note || ""));
+      tbody.append(tr);
+    });
+    table.append(thead, tbody);
+    card.append(el("h3", {}, "Przepływy panelu: gotowe i do pracy"), table);
+    root.append(card);
+  }
+}
+async function loadLabStatus() {   // za kazdym razem: stan Tora, lokalnego AI i konfiguracji moze sie zmienic
+  const root = document.getElementById("lab-status");
+  try {
+    const res = await fetch("/api/lab", { headers: { "X-Panel-Token": TOKEN } });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "kod " + res.status);
+    renderLabStatus(data);
+  } catch (e) {
+    root.className = "empty";
+    root.replaceChildren(el("span", { class: "badge bad" }, "błąd"),
+      document.createTextNode(" Nie udało się pobrać statusu laboratorium (to nie jest brak danych): " + e.message));
+  }
+}
+
+function render(action, r) {
+  out.replaceChildren();
+  const meta = el("div", { class: "meta" });
+  if (r.error) {
+    meta.append(el("span", { class: "badge " + (r.busy ? "warn" : "bad") }, r.busy ? "zajęte" : "błąd"));
+    out.append(meta, el("pre", { class: "err" }, r.error));
+    return;
+  }
+  if (r.kroki) return renderScan(r);
+  const cls = r.code === 0 ? "ok" : (r.code === 1 ? "warn" : "bad");
+  if (r.metryczka) {
+    meta.append(el("span", { class: "badge " + (RESULT_TONE[r.metryczka.status] || "bad") }, r.metryczka.status_label));
+    if (r.meta && r.meta.label) meta.append(el("span", {}, r.meta.label));
+  } else if (r.meta && r.meta.label) {
+    const mcls = META_CLS[r.meta.status];
+    meta.append(el("span", { class: "badge " + (mcls ?? "bad") }, r.meta.label));
+    meta.append(el("span", {}, { api: "oficjalne API", manual: "link ręczny", html_heuristic: "heurystyka HTML" }[r.meta.source] || r.meta.source));
+  } else {
+    meta.append(el("span", { class: "badge " + cls }, r.code === 0 ? "gotowe" : "kod " + r.code));
+  }
+  meta.append(el("span", {}, action + (r.seconds != null ? ` · ${r.seconds} s` : "")));
+  if (r.report) {
+    const a = el("a", { href: r.report, target: "_blank", rel: "noopener" }, "otwórz raport w nowej karcie");
+    meta.append(a);
+  }
+  out.append(meta);
+  if (r.metryczka) out.append(renderEnvelope(r.metryczka));
+  if (r.report) out.append(el("iframe", { src: r.report, title: "Raport",
+                                          sandbox: SANDBOX }));
+  if (r.stdout) out.append(el("pre", {}, r.stdout));
+  if (r.stderr) out.append(el("pre", { class: r.code === 0 ? "" : "err" }, r.stderr));
+  if (!r.stdout && !r.stderr && !r.report) out.append(el("p", { class: "empty" }, "Brak wyniku."));
+  const pivots = r.pivots || [], outside = r.poza_zakresem || [];
+  if (pivots.length || outside.length || r.obciete) {
+    const next = el("div", { class: "next" });
+    next.append(el("p", { class: "sub" }, "Następny krok"));
+    const row = el("div", { class: "pivots" });
+    pivots.forEach(p => {
+      const b = el("button", { type: "button", class: "go" }, p.label);
+      b.addEventListener("click", () => runAction(p.action, p.params));
+      row.append(b);
+    });
+    if (pivots.length) next.append(row);
+    else next.append(el("p", { class: "empty" }, "Brak podpowiedzi w zakresie celu."));
+    if (r.obciete) next.append(el("p", { class: "hint" }, `Pominięto ${r.obciete} kolejnych podpowiedzi (limit).`));
+    if (outside.length) {
+      next.append(el("p", { class: "sub" }, "Poza zakresem, bez podpowiedzi"));
+      const ul = el("ul", { class: "outside" });
+      outside.forEach(x => ul.append(el("li", {}, x)));
+      next.append(ul);
+    }
+    out.append(next);
+  }
+}
+
+// Metryczka wyniku: zrodlo, identyfikator, czas UTC, status, kanal, ograniczenia, skrot, decyzja operatora.
+const RESULT_TONE = { found: "ok", no_result: "", error: "bad", blocked: "warn", partial: "warn" };
+function renderEnvelope(m) {
+  const rows = [
+    ["Źródło", m.zrodlo], ["Identyfikator", m.identyfikator || "-"], ["Czas pozyskania (UTC)", m.czas_utc],
+    ["Status", m.status_label + (m.uwaga ? ": " + m.uwaga : "")], ["Kanał sieciowy", m.kanal],
+    ["Ograniczenia", m.ograniczenia], ["Dowód", m.dowod], ["SHA-256 materiału", m.sha256],
+    ["Decyzja operatora", m.decyzja],
+  ];
+  const box = el("details", { class: "envelope" });
+  box.open = m.status !== "found";   // blad, blokada, wynik czesciowy i brak: od razu widoczne
+  box.append(el("summary", {}, "Metryczka wyniku"), spTable(["Pole", "Wartość"], rows));
+  return box;
+}
+
+const SCAN_STATUS = { gotowe: ["ok", "gotowe"], uwagi: ["warn", "uwagi"], blad: ["bad", "błąd"], pominieto: ["warn", "pominięto (zajęte)"] };
+
+function renderScan(r) {
+  const p = r.podsumowanie || {};
+  const meta = el("div", { class: "meta" });
+  const full = p.wynik === "pelny";
+  meta.append(el("span", { class: "badge " + (full ? "ok" : "warn") }, full ? "pełny" : "niepełny"));
+  meta.append(el("span", {}, `${r.cel} (${r.typ})` + (r.seconds != null ? ` · ${r.seconds} s` : "")));
+  if (r.report) meta.append(el("a", { href: r.report, target: "_blank", rel: "noopener" }, "otwórz raport zbiorczy"));
+  out.append(meta);
+  const table = el("table");
+  const head = el("tr");
+  ["Krok", "Status", "Czas", "Raport"].forEach(h => head.append(el("th", { style: "text-align:left;padding:2px 8px" }, h)));
+  table.append(head);
+  r.kroki.forEach(k => {
+    const m = k.metryczka;
+    const [cls, label] = m ? [RESULT_TONE[m.status] || "bad", m.status_label] : (SCAN_STATUS[k.status] || ["bad", k.status]);
+    const tr = el("tr");
+    tr.append(el("td", { style: "padding:2px 8px" }, k.akcja));
+    const st = el("td", { style: "padding:2px 8px" });
+    st.append(el("span", { class: "badge " + cls, title: (m && m.uwaga) || k.blad || k.stderr || "" }, label));
+    tr.append(st, el("td", { style: "padding:2px 8px" }, k.seconds != null ? `${k.seconds} s` : "-"));
+    const rep = el("td", { style: "padding:2px 8px" });
+    if (k.report) rep.append(el("a", { href: k.report, target: "_blank", rel: "noopener" }, "raport"));
+    else rep.textContent = "-";
+    tr.append(rep);
+    table.append(tr);
+  });
+  out.append(table);
+  if (r.report) out.append(el("iframe", { src: r.report, title: "Raport zbiorczy",
+                                          sandbox: "allow-scripts allow-popups allow-popups-to-escape-sandbox" }));
+}
+
+async function runAction(action, data, btn) {
+  if (btn) btn.disabled = true;
+  const wait = el("p", { class: "wait" });
+  const started = Date.now();
+  const form = document.querySelector(`form[data-action="${action}"]`);
+  const note = form && form.dataset.long ? " " + form.dataset.long : "";
+  const tick = () => { wait.textContent = `Trwa sprawdzanie… ${Math.round((Date.now() - started) / 1000)} s.${note}`; };
+  tick();
+  const timer = setInterval(tick, 1000);
+  out.replaceChildren(wait);
+  // dlugi skan: co 3 s pokazuj to, co narzedzie znalazlo dotad (GET /api/postep)
+  const live = el("pre", { class: "live" });
+  let poll = null;
+  if (note) {
+    out.append(live);
+    poll = setInterval(async () => {
+      try {
+        const res = await fetch("/api/postep", { headers: { "X-Panel-Token": TOKEN } });
+        const p = await res.json();
+        if (!p.aktywny) return;
+        live.textContent = (p.postep ? p.postep + "\n\n" : "") + (p.stdout || "Na razie brak trafień…");
+      } catch (e) { /* podglad jest pomocniczy: blad nie przerywa skanu */ }
+    }, 3000);
+  }
+  try {
+    const res = await fetch("/api/" + action, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Panel-Token": TOKEN },
+      body: JSON.stringify(data),
+    });
+    render(action, await res.json());
+  } catch (e) {
+    render(action, { error: "Brak połączenia z panelem: " + e.message });
+  } finally {
+    clearInterval(timer);
+    if (poll) clearInterval(poll);
+    if (btn) btn.disabled = false;
+  }
+}
+
+document.querySelectorAll("form[data-action]").forEach(f => f.addEventListener("submit", async ev => {
+  ev.preventDefault();
+  const data = {};
+  new FormData(f).forEach((v, k) => data[k] = v);
+  f.querySelectorAll("input[type=checkbox]").forEach(c => data[c.name] = c.checked);
+  try {
+    await runAction(f.dataset.action, data, f.querySelector("button.go"));
+  } finally {
+    const pw = f.querySelector("input[type=password]");
+    if (pw) pw.value = "";
+  }
+}));
+
+// Archiwum raportow: GET /api/raporty (token w naglowku, bo lista celow to dane wrazliwe).
+const rapCele = document.getElementById("rap-cele");
+const rapLista = document.getElementById("rap-lista");
+const rapTytul = document.getElementById("rap-tytul");
+let rapFiltr = "";
+
+function podglad(x) {
+  out.replaceChildren();
+  const meta = el("div", { class: "meta" });
+  if (x.meta && x.meta.label) meta.append(el("span", { class: "badge " + (META_CLS[x.meta.status] ?? "bad") }, x.meta.label));
+  meta.append(el("span", {}, `${x.narzedzie}${x.cel ? " · " + x.cel : ""} · ${x.data}`));
+  meta.append(el("a", { href: x.plik, target: "_blank", rel: "noopener" }, "otwórz raport w nowej karcie"));
+  out.append(meta, el("iframe", { src: x.plik, title: "Raport", sandbox: SANDBOX }));
+}
+
+async function ladujRaporty(cel) {
+  rapFiltr = cel || "";
+  const q = rapFiltr ? "?cel=" + encodeURIComponent(rapFiltr) : "";
+  let d;
+  try {
+    const res = await fetch("/api/raporty" + q, { headers: { "X-Panel-Token": TOKEN } });
+    d = await res.json();
+    if (!res.ok) throw new Error(d.error || "kod " + res.status);
+  } catch (e) {
+    const tr = el("tr");
+    tr.append(el("td", { colspan: "5", class: "bad" }, "Błąd: " + e.message));
+    rapLista.replaceChildren(tr);
+    return;
+  }
+  rapCele.replaceChildren();
+  if (rapFiltr) {
+    const li = el("li");
+    const b = el("button", { type: "button" }, "× wszystkie raporty");
+    b.addEventListener("click", () => ladujRaporty(""));
+    li.append(b);
+    rapCele.append(li);
+  }
+  d.cele.forEach(c => {
+    const li = el("li");
+    const b = el("button", { type: "button" }, c.cel);
+    b.addEventListener("click", () => ladujRaporty(c.cel));
+    li.append(b, el("span", { class: "empty" }, ` · ${c.narzedzia.join(", ")} · ${c.liczba} · ostatni ${c.ostatni}`));
+    rapCele.append(li);
+  });
+  if (!d.cele.length) rapCele.append(el("li", { class: "empty" }, "Brak teczek."));
+  rapTytul.textContent = rapFiltr ? "Raporty: " + rapFiltr : "Raporty";
+  rapLista.replaceChildren();
+  d.raporty.forEach(x => {
+    const tr = el("tr", { tabindex: "0" });
+    const st = el("td");
+    if (x.meta && x.meta.label) st.append(el("span", { class: "badge " + (META_CLS[x.meta.status] ?? "bad") }, x.meta.label));
+    tr.append(el("td", {}, x.data), el("td", {}, x.narzedzie), el("td", {}, x.cel ?? "—"),
+              el("td", {}, (x.rozmiar / 1024).toFixed(1)), st);
+    tr.addEventListener("click", () => podglad(x));
+    tr.addEventListener("keydown", ev => { if (ev.key === "Enter") podglad(x); });
+    rapLista.append(tr);
+  });
+  if (!d.raporty.length) {
+    const tr = el("tr");
+    tr.append(el("td", { colspan: "5", class: "empty" }, "Brak zapisanych raportów."));
+    rapLista.append(tr);
+  }
+}
+
+document.getElementById("rap-odswiez").addEventListener("click", () => ladujRaporty(rapFiltr));
+document.querySelector('nav button[data-tab="raporty"]').addEventListener("click", () => ladujRaporty(rapFiltr));
+
+// Sprawa (entity-graph). Wszystkie dane ze sprawy trafiaja do strony przez textContent / setAttribute (bez HTML).
+// Reguly (cel, zrodla, decyzje, limity, audyt) sa w entity-graph; tu tylko formularze i widok.
+const spWybor = document.getElementById("sp-wybor");
+const spOsoby = document.getElementById("sp-osoby");
+let spAktualna = "";
+
+function safeLink(url, text) {
+  const u = String(url || "");
+  if (!/^https?:\/\/[^\s]+$/i.test(u)) return el("span", {}, text ?? u);
+  return el("a", { href: u, target: "_blank", rel: "noopener noreferrer nofollow" }, text ?? u);
+}
+
+function spTable(headers, rows) {
+  const t = el("table", { class: "sp" });
+  const h = el("tr");
+  headers.forEach(x => h.append(el("th", { scope: "col" }, x)));
+  t.append(h);
+  rows.forEach(r => {
+    const tr = el("tr");
+    r.forEach(c => { const td = el("td"); if (c instanceof Node) td.append(c); else td.textContent = c ?? ""; tr.append(td); });
+    t.append(tr);
+  });
+  return t;
+}
+
+function spBlock(title, note) {
+  const b = el("div", { class: "sp-block" });
+  b.append(el("h3", {}, title));
+  if (note) b.append(el("p", { class: "sp-note" }, note));
+  return b;
+}
+
+function conf(x) { return x == null ? "nie dotyczy" : Number(x).toFixed(2); }
+
+async function spPost(action, data) {
+  const res = await fetch("/api/" + action, { method: "POST",
+    headers: { "Content-Type": "application/json", "X-Panel-Token": TOKEN }, body: JSON.stringify(data) });
+  return res.json();
+}
+
+async function spLista(select) {
+  try {
+    const res = await fetch("/api/sprawy", { headers: { "X-Panel-Token": TOKEN } });
+    const data = await res.json();
+    spWybor.replaceChildren();
+    (data.sprawy || []).forEach(s => spWybor.append(el("option", { value: s.nazwa }, `${s.nazwa} (${s.zmieniono})`)));
+    if (!(data.sprawy || []).length) spWybor.append(el("option", { value: "" }, "(brak spraw)"));
+    if (select) spWybor.value = select;
+  } catch (e) { render("sprawa", { error: "Brak połączenia z panelem: " + e.message }); }
+}
+
+function spDecide(action, base, labels) {
+  const box = el("div", { class: "sp-decide" });
+  const ev = el("input", { type: "text", maxlength: "500", placeholder: "uzasadnienie (co sprawdziłeś)" });
+  box.append(ev);
+  labels.forEach(([decyzja, text]) => {
+    const b = el("button", { type: "button" }, text);
+    b.addEventListener("click", () => spRun(action, { ...base(), decyzja, dowod: ev.value }));
+    box.append(b);
+  });
+  return box;
+}
+
+function spRender(name, s, report, last) {
+  out.replaceChildren();
+  const meta = el("div", { class: "meta" });
+  meta.append(el("span", { class: "badge ok" }, "sprawa"), el("span", {}, name));
+  if (report) meta.append(el("a", { href: report, target: "_blank", rel: "noopener" }, "raport sprawy w nowej karcie"));
+  out.append(meta, spTools(name));
+  if (last) {
+    out.append(el("pre", { class: last.code === 0 ? "" : "err" }, [last.error, last.stdout, last.stderr].filter(Boolean).join("\n") || "gotowe"));
+  }
+  const c = s.case || {};
+  out.append(el("p", { class: "sp-note" }, `Cel: ${c.purpose || "-"} · operator: ${c.operator || "-"} · start: ${c.started || "-"}`));
+  out.append(el("p", { class: "sp-note" }, "Przy każdej pozycji osobno: status źródła, pewność powiązania i decyzja operatora. Kandydat i twierdzenie wymagają potwierdzenia."));
+
+  const people = s.people || [];
+  spOsoby.replaceChildren(...people.map(p => el("option", { value: p.value })));
+  const bp = spBlock(`Osoby (${people.length})`);
+  bp.append(spTable(["Osoba", "Pochodzenie", "Od", "Kandydaci nazw (hipotezy)"],
+    people.map(p => [p.value, (p.sources || []).join(", "), p.first_seen, (p.candidate_usernames || []).join(", ") || "-"])));
+  out.append(bp);
+
+  const claims = s.claims || [];
+  const bc = spBlock(`Twierdzenia o relacjach (${claims.length})`, "Zapis informacji ze źródła wskazanego przez operatora, nie ustalenie. Potwierdzenie to ocena człowieka, nie dowód pokrewieństwa.");
+  bc.append(spTable(["Osoba A", "Relacja", "Osoba B", "Status źródła", "Pewność", "Decyzja operatora", "Źródła i dowód", "Zapisano"],
+    claims.map(x => {
+      const src = el("div");
+      (x.sources || []).forEach(z => {
+        src.append(z.url ? safeLink(z.url) : el("span", {}, z.label), el("br"),
+                   el("span", {}, "dowód: " + z.evidence), el("br"));
+        if (z.excerpt) src.append(el("span", { class: "sp-note" }, "fragment: " + z.excerpt), el("br"));
+      });
+      const dec = el("div", {}, x.decision + (x.decision_evidence ? ": " + x.decision_evidence : ""));
+      dec.append(spDecide("sprawa_relacja_decyzja", () => ({ sprawa: spAktualna, id: x.id }),
+                          [["potwierdz", "potwierdź"], ["odrzuc", "odrzuć"]]));
+      return [x.a, x.label, x.b, x.source_status, conf(x.confidence), dec, src, x.created_at];
+    })));
+  (s.claim_conflicts || []).forEach(t => bc.append(el("p", { class: "warn" }, "Sprzeczne twierdzenia do wyjaśnienia: " + t)));
+  out.append(bc);
+
+  const phones = s.phones || [];
+  const bt = spBlock(`Numery telefonu (${phones.length})`, "Region planu numeracyjnego to obszar przydziału puli numerów, nie miejsce urządzenia ani osoby. Operator z planu to pierwotny przydział (numer mógł zostać przeniesiony).");
+  phones.forEach(ph => {
+    bt.append(el("p", { class: "sub" }, ph.value));
+    const rows = (ph.fields || []).map(f => [f.label, String(f.value)]);
+    rows.push(["status źródła", `${(ph.source_status || {}).status || "-"} ${(ph.source_status || {}).note || ""}`.trim()]);
+    rows.push(["pewność powiązania z osobą", "nie dotyczy"], ["decyzja operatora", ph.decision], ["powiązanie z osobą", ph.linked_person]);
+    if (ph.manual_check_url) rows.push(["ręczna weryfikacja operatora (otwierasz sam)", safeLink(ph.manual_check_url)]);
+    bt.append(spTable(["Pole", "Wartość"], rows));
+    (ph.conflicts || []).forEach(t => bt.append(el("p", { class: "warn" }, "Konflikt obserwacji (pole nieznane): " + t)));
+    if ((ph.log || []).length) bt.append(spTable(["Rodzaj", "Źródło", "Czas obserwacji", "Data weryfikacji"],
+      ph.log.map(l => [l.kind === "plan" ? "plan numeracji" : "ręczna weryfikacja", l.source, l.observed_at, l.verified_on || "-"])));
+  });
+  out.append(bt);
+
+  const cands = s.candidates || [];
+  const pending = cands.filter(x => !(x.decisions || []).length);
+  const bk = spBlock(`Kandydaci profili (${pending.length} wymaga potwierdzenia, ${cands.length} razem)`, "Ta sama nazwa, imię, nazwisko, awatar albo serwis nie łączą profilu z osobą. Potwierdzenie niczego nie skanuje.");
+  bk.append(spTable(["Profil", "Serwis / nazwa wyświetlana", "Skąd", "Status źródła", "Pewność konta / powiązania z osobą", "Ocena dopasowania", "Decyzja operatora"],
+    cands.map(x => {
+      const dec = el("div", {}, x.decision);
+      const who = el("select");
+      people.forEach(p => who.append(el("option", { value: p.value }, p.value)));
+      const box = spDecide("sprawa_profil_decyzja", () => ({ sprawa: spAktualna, osoba: who.value, profil: x.url }),
+                           [["potwierdz", "potwierdź"], ["odrzuc", "odrzuć"]]);
+      box.prepend(who);
+      dec.append(box);
+      return [safeLink(x.url), `${x.site || "-"} / ${x.display_name || "-"}`, (x.via_usernames || []).join(", ") || "-",
+              x.source_status, `${conf(x.confidence)} / ${conf(x.link_confidence)}`, x.assessment || "-", dec];
+    })));
+  out.append(bk);
+
+  out.append(spDiscovery(s.discovery || {}, people, last));
+
+  const rounds = s.rounds || [];
+  const br = spBlock(`Rundy kandydatów (${rounds.length})`, `Limity backendu: nazw ${s.limits.names}, zapytań ${s.limits.queries}, koszt ${s.limits.cost}, czas ${s.limits.seconds} s, rund ${s.limits.rounds}. NOT_FOUND / UNKNOWN / ERROR opisują źródło, nie osobę.`);
+  rounds.forEach(r => {
+    const t = r.totals || {}, sc = r.scope || {}, e = r.entry || {};
+    br.append(el("p", { class: "sub" }, `Runda ${r.round}: ${e.type} ${e.value} (${r.started})`));
+    br.append(el("p", { class: "sp-note" }, `Budżet: zapytania ${t.queries}/${sc.max_queries}, koszt ${t.cost}/${sc.max_cost}, czas ${t.seconds}/${sc.max_seconds} s. ${r.stop_reason || ""}`));
+    br.append(spTable(["Status źródła", "Nazwa", "Uwagi"], (r.queries || []).map(q => [q.status, q.identifier, [q.note, q.interpretation].filter(Boolean).join("; ")])
+      .concat((r.skipped || []).map(q => ["pominięto", q.identifier, q.why]))));
+  });
+  if ((s.proposals || []).length) {
+    br.append(el("p", { class: "sub" }, "Propozycje kolejnej rundy (niewykonane)"));
+    const row = el("div", { class: "pivots" });
+    s.proposals.forEach(p => {
+      const b = el("button", { type: "button", class: "go" }, "Przygotuj rundę: " + p);
+      b.addEventListener("click", () => {
+        const f = document.querySelector('form[data-sp-action="sprawa_kandydaci"]');
+        f.elements.osoba.value = ""; f.elements.nazwa.value = p; f.elements.nazwy.value = "";
+        f.scrollIntoView({ behavior: "smooth" });
+      });
+      row.append(b);
+    });
+    br.append(row, el("p", { class: "sp-note" }, "Przycisk tylko wypełnia formularz; rundę uruchamiasz osobno, w widocznym budżecie."));
+  }
+  out.append(br);
+}
+
+function spDiscovery(d, people, last) {
+  const items = d.items || [], runs = d.runs || [];
+  const b = spBlock(`Szukaj profili po nazwisku: kandydaci (${items.length})`, "Wynik wyszukiwarki i nazwa serwisu nie dowodzą, że adres to konto tej osoby. Zgodność nazwy, nicka, miasta albo zdjęcia nie potwierdza tożsamości. Zero wyników zapytania nie oznacza braku kont.");
+  if (last && last.konfiguracja === false) {
+    b.append(el("p", { class: "warn" }, "Brak konfiguracji Brave Search API: ustaw BRAVE_SEARCH_API_KEY w środowisku panelu albo w pliku ~/.osint/brave.env (poza repozytorium) i uruchom panel ponownie. Nic nie zostało wysłane. Formularz „Kandydat z Twoim materiałem” działa bez klucza."));
+  }
+  runs.slice().reverse().forEach(r => {
+    const t = r.totals || {};
+    b.append(el("p", { class: "sub" }, `Przebieg ${r.number}: ${r.person}${r.context ? " + " + r.context : ""} (${r.started})`));
+    b.append(el("p", { class: "sp-note" }, `Wywołania ${t.calls}/${(r.limits || {}).calls}, kandydaci ${t.candidates_seen}, odrzucone adresy ${t.discarded}, czas ${t.seconds} s. Kanał: ${r.channel}. ${r.stop_reason}${r.partial ? " (wynik częściowy)" : ""}`));
+    b.append(spTable(["Status źródła", "Zapytanie", "Przyczyna", "Wyniki / przyjęte"],
+      (r.queries || []).map(q => [q.status, q.query, q.reason, `${q.results} / ${q.accepted}`])
+        .concat((r.skipped || []).map(q => ["pominięto", q.query, q.why, "-"]))));
+  });
+  items.forEach(x => {
+    const card = el("div", { class: "sp-card" });
+    const head = el("p", { class: "sub" });
+    head.append(el("strong", {}, `Osoba: ${x.person} · `), safeLink(x.url), el("span", {}, ` · ${x.platform} · ${x.url_class}`));
+    card.append(head);
+    const ident = x.identifier && x.identifier.value ? `${x.identifier.type}: ${x.identifier.value}` : "-";
+    card.append(spTable(["Rodzaj źródła", "Identyfikator z adresu", "Status analizy", `Ocena dopasowania (dla: ${x.person})`],
+      [[x.source_status, ident, x.analysis_status, x.assessment]]));
+    const obs = el("ul");
+    (x.observations || []).forEach(o => {
+      const li = el("li", {}, `${o.kind_label} · ${o.provider || "-"}${o.query ? " · zapytanie " + o.query : ""} · ${o.acquired_at}`);
+      if (o.excerpt) { li.append(el("br"), el("q", {}, o.excerpt), el("span", { class: "sp-note" }, " (fragment zapisany przed R5A)")); }
+      (o.skipped || []).forEach(s => li.append(el("br"), el("span", { class: "sp-note" }, `pominięto ${s.what} (${s.count}): ${s.why}`)));
+      obs.append(li);
+    });
+    card.append(el("p", { class: "sp-note" }, "Pochodzenie materiału (tekst nie jest zapisywany: tylko skrót i ustalenia z dowodem)"), obs);
+    const fl = el("ul");
+    (x.observations || []).forEach(o => (o.findings || []).forEach(f => {
+      const li = el("li", {}, `${f.kind}: ${f.value} `);
+      li.append(el("q", {}, f.evidence), el("span", { class: "sp-note" }, ` (${f.method}, ${f.observed_at})`));
+      fl.append(li);
+    }));
+    card.append(el("p", { class: "sp-note" }, fl.children.length ? "Ustalenia z dowodem (z materiału, nie z całego profilu)" : "Ustalenia: brak (" + x.analysis_status + ")"));
+    if (fl.children.length) card.append(fl);
+    const dec = el("div", {}, "Decyzja operatora: " + x.decision);
+    if (x.account) {
+      const who = el("select");
+      people.forEach(p => who.append(el("option", { value: p.value }, p.value)));
+      if (x.person) who.value = x.person;
+      const box = spDecide("sprawa_profil_decyzja", () => ({ sprawa: spAktualna, osoba: who.value, profil: x.url }),
+                           [["potwierdz", "potwierdź powiązanie"], ["odrzuc", "odrzuć powiązanie"]]);
+      box.prepend(who);
+      dec.append(box);
+    }
+    card.append(dec);
+    b.append(card);
+  });
+  return b;
+}
+
+// Narzedzia sprawy: asystent (reguly / lokalne AI), dziennik audytu, eksport GraphML i CSV dla Maltego.
+function spTools(name) {
+  const row = el("div", { class: "pivots" });
+  const add = (label, fn) => {
+    const b = el("button", { type: "button", class: "go" }, label);
+    b.addEventListener("click", async () => { b.disabled = true; try { await fn(); } finally { b.disabled = false; } });
+    row.append(b);
+  };
+  add("Asystent: porządek i kroki", () => spAsystent(name, false));
+  add("Asystent + lokalne AI", () => spAsystent(name, true));
+  add("Dziennik audytu", () => spDziennik(name));
+  add("Pobierz GraphML", () => spPobierz(name, "graphml"));
+  add("Pobierz CSV (Maltego)", () => spPobierz(name, "maltego"));
+  return row;
+}
+
+function spBack(name) {
+  const b = el("button", { type: "button", class: "go" }, "Wróć do sprawy");
+  b.addEventListener("click", () => spOpen(name));
+  return b;
+}
+
+async function spAsystent(name, ai) {
+  out.replaceChildren(el("p", { class: "wait" }, ai ? "Asystent i lokalny model porządkują sprawę… (do 2 min)" : "Asystent czyta sprawę…"));
+  let r;
+  try { r = await spPost("sprawa_asystent", { sprawa: name, ai }); }
+  catch (e) { return render("sprawa_asystent", { error: "Brak połączenia z panelem: " + e.message }); }
+  if (r.error || !r.asystent) return render("sprawa_asystent", r.error ? r : { error: r.stderr || "asystent nie odpowiedział" });
+  const a = r.asystent;
+  out.replaceChildren();
+  const meta = el("div", { class: "meta" });
+  meta.append(el("span", { class: "badge ok" }, "asystent"), el("span", {}, name), spBack(name));
+  out.append(meta);
+  out.append(el("p", { class: "sp-note" }, (a.ograniczenia || []).join(" ")));
+  const o = a.porzadek || {};
+  const b1 = spBlock("Porządek sprawy");
+  b1.append(spTable(["Pozycja", "Stan"], [
+    ["osoby", (o.osoby || []).join(", ") || "-"],
+    ["nazwy użytkownika", (n => `od operatora: ${n.podane_przez_operatora ?? 0}; hipotezy ze wzorców (nie konta): ${n.hipotezy_ze_wzorcow_niesprawdzone ?? 0} niesprawdzonych, ${n.hipotezy_sprawdzone_skanem ?? 0} sprawdzonych`)(o.nazwy_uzytkownika || {})],
+    ["telefony", String(o.telefony ?? 0)],
+    ["twierdzenia wg decyzji", Object.entries(o.twierdzenia || {}).map(([k, v]) => `${k}: ${v}`).join(", ") || "brak"],
+    ["kandydaci profili", `${(o.kandydaci || {}).bez_decyzji ?? 0} bez decyzji z ${(o.kandydaci || {}).razem ?? 0}`],
+    ["przebiegi źródeł wg statusu", Object.entries(o.przebiegi_zrodel || {}).map(([k, v]) => `${k}: ${v}`).join(", ") || "brak"],
+    ["źródła", Object.entries(o.zrodla || {}).map(([k, v]) => `${k} (${v})`).join(", ") || "brak"],
+  ]));
+  out.append(b1);
+  const b2 = spBlock(`Sprzeczności (${(a.sprzecznosci || []).length})`, "Do wyjaśnienia u źródła pierwotnego; asystent niczego nie rozstrzyga.");
+  if ((a.sprzecznosci || []).length) b2.append(spTable(["Rodzaj", "Opis"], a.sprzecznosci.map(x => [x.rodzaj, x.opis])));
+  else b2.append(el("p", { class: "empty" }, "Nie wykryto sprzeczności regułami."));
+  out.append(b2);
+  const b3 = spBlock(`Dozwolone kolejne kroki (${(a.kroki || []).length})`, "Tylko z zamkniętej listy; każdy wykonujesz sam i kończy się Twoją decyzją.");
+  if ((a.kroki || []).length) b3.append(spTable(["Krok", "Dotyczy"], a.kroki.map(x => [x.opis, x.dotyczy])));
+  else b3.append(el("p", { class: "empty" }, "Brak kroków do zaproponowania."));
+  if (a.kroki_pominiete) b3.append(el("p", { class: "hint" }, `Pominięto ${a.kroki_pominiete} kolejnych kroków (limit).`));
+  out.append(b3);
+  if (a.ai) {
+    const b4 = spBlock("Lokalne AI", a.ai.uwaga || "");
+    const tone = { FOUND: "ok", UNKNOWN: "warn", ERROR: "bad" }[a.ai.status] || "bad";
+    const label = { FOUND: "odpowiedź", UNKNOWN: "niedostępne", ERROR: "błąd" }[a.ai.status] || a.ai.status;
+    const line = el("div", { class: "meta" });
+    line.append(el("span", { class: "badge " + tone }, label), el("span", {}, "model: " + a.ai.model));
+    if (a.ai.usuniete_linie) line.append(el("span", { class: "warn" }, `usunięto ${a.ai.usuniete_linie} linii poza granicami`));
+    if (a.ai.sha256) line.append(el("span", {}, "SHA-256: " + a.ai.sha256.slice(0, 16) + "…"));
+    b4.append(line);
+    if (a.ai.tekst) b4.append(el("pre", {}, a.ai.tekst));
+    out.append(b4);
+  }
+}
+
+async function spDziennik(name) {
+  out.replaceChildren(el("p", { class: "wait" }, "Czytam dziennik audytu…"));
+  let r;
+  try { r = await spPost("sprawa_dziennik", { sprawa: name }); }
+  catch (e) { return render("sprawa_dziennik", { error: "Brak połączenia z panelem: " + e.message }); }
+  if (r.error || !r.dziennik) return render("sprawa_dziennik", r.error ? r : { error: r.stderr || "brak dziennika" });
+  const d = r.dziennik;
+  out.replaceChildren();
+  const meta = el("div", { class: "meta" });
+  meta.append(el("span", { class: "badge " + (d.spojny ? "ok" : "bad") }, d.spojny ? "łańcuch spójny" : "łańcuch przerwany"),
+              el("span", {}, `${name} · ${d.opis} · pokazano ${(d.wpisy || []).length} z ${d.wszystkich}`), spBack(name));
+  out.append(meta);
+  const table = spTable(["Czas UTC", "Zdarzenie", "Faza", "Wynik", "Operator", "Szczegóły"],
+    (d.wpisy || []).slice().reverse().map(e => [e.ts, e.event, e.phase, e.result, e.operator, e.szczegoly]));
+  table.classList.add("audit");
+  out.append(table);
+}
+
+async function spPobierz(name, typ) {
+  try {
+    const res = await fetch(`/api/sprawa_plik?sprawa=${encodeURIComponent(name)}&typ=${typ}`, { headers: { "X-Panel-Token": TOKEN } });
+    if (!res.ok) { const e = await res.json(); return render("sprawa_plik", { error: e.error || "kod " + res.status }); }
+    const url = URL.createObjectURL(await res.blob());
+    const a = el("a", { href: url, download: `${name}_${typ === "graphml" ? "graph.graphml" : "maltego.csv"}` });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (e) { render("sprawa_plik", { error: "Brak połączenia z panelem: " + e.message }); }
+}
+
+async function spOpen(name, last) {
+  if (!name) { render("sprawa", { error: "Wybierz albo utwórz sprawę." }); return; }
+  spAktualna = name;
+  try {
+    const r = await spPost("sprawa", { sprawa: name });
+    if (r.error || !r.sprawa) { render("sprawa", r.error ? r : { ...r, error: r.stderr || "nie udało się otworzyć sprawy" }); return; }
+    spRender(name, r.sprawa, r.report, last);
+  } catch (e) { render("sprawa", { error: "Brak połączenia z panelem: " + e.message }); }
+}
+
+async function spRun(action, data, btn) {
+  if (btn) btn.disabled = true;
+  out.replaceChildren(el("p", { class: "wait" }, "Trwa zapis w sprawie…"));
+  try {
+    const r = await spPost(action, data);
+    const name = action === "sprawa_nowa" ? data.sprawa : spAktualna;
+    if (r.error || action === "sprawa_nowa") await spLista(name);
+    if (r.error && action !== "sprawa_nowa" && spAktualna) return spOpen(spAktualna, r);
+    if (r.error) return render(action, r);
+    await spOpen(name, r);
+  } catch (e) { render(action, { error: "Brak połączenia z panelem: " + e.message }); }
+  finally { if (btn) btn.disabled = false; }
+}
+
+document.querySelectorAll("form[data-sp-action]").forEach(f => f.addEventListener("submit", ev => {
+  ev.preventDefault();
+  const data = {};
+  new FormData(f).forEach((v, k) => data[k] = v);
+  f.querySelectorAll("input[type=checkbox]").forEach(c => data[c.name] = c.checked);
+  if (!f.dataset.noCase) {
+    if (!spAktualna) { render("sprawa", { error: "Najpierw otwórz sprawę." }); return; }
+    data.sprawa = spAktualna;
+  }
+  spRun(f.dataset.spAction, data, f.querySelector("button.go"));
+}));
+document.getElementById("sp-lista").addEventListener("click", () => spLista(spWybor.value));
+document.getElementById("sp-otworz").addEventListener("click", () => spOpen(spWybor.value));
+document.querySelector('nav button[data-tab="sprawa"]').addEventListener("click", () => spLista(spAktualna));
+</script>
+</body>
+</html>

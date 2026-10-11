@@ -1,0 +1,53 @@
+{
+ "tool": "dns-audit 0.1.0",
+ "domain": "sklep-acme.example",
+ "resolver": "systemowy",
+ "generated": "2026-10-03T12:00:00+00:00",
+ "counts": {
+  "OK": 4,
+  "INFO": 0,
+  "WARN": 1,
+  "FAIL": 0
+ },
+ "summary": {
+  "a": [
+   "192.0.2.10"
+  ],
+  "aaaa": [],
+  "ns": [
+   "ns1.hosting-test.example",
+   "ns2.hosting-test.example"
+  ],
+  "soa": {
+   "mname": "ns1.hosting-test.example"
+  },
+  "mx": [],
+  "txt": [
+   "v=spf1 -all"
+  ],
+  "caa": [],
+  "spf": {
+   "raw": "v=spf1 -all",
+   "records": 1,
+   "all": "-all",
+   "lookups": 0,
+   "lookup_limit": 10,
+   "includes": [],
+   "errors": []
+  },
+  "dmarc": {
+   "raw": "v=DMARC1; p=reject",
+   "p": "reject"
+  },
+  "dkim": [],
+  "dnssec": {
+   "dnskey": 0,
+   "ds": 0,
+   "algorithms": [],
+   "ad_flag": false
+  },
+  "verifications": [],
+  "failed": {}
+ },
+ "findings": []
+}

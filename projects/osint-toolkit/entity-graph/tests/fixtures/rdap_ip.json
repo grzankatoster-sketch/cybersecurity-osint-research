@@ -1,0 +1,7 @@
+{"handle":"1.1.1.0 - 1.1.1.255","startAddress":"1.1.1.0","endAddress":"1.1.1.255","ipVersion":"v4","name":"APNIC-LABS","country":"AU","type":"ASSIGNED PORTABLE",
+ "cidr0_cidrs":[{"v4prefix":"1.1.1.0","length":24}],
+ "events":[{"eventAction":"registration","eventDate":"2011-08-10T23:12:35Z"},{"eventAction":"last changed","eventDate":"2023-04-26T22:57:58Z"}],
+ "entities":[
+  {"handle":"ORG-ARAD1-AP","roles":["registrant"],"vcardArray":["vcard",[["version",{},"text","4.0"],["fn",{},"text","APNIC Research and Development"],["kind",{},"text","org"]]]},
+  {"handle":"AIC3-AP","roles":["technical"],"vcardArray":["vcard",[["version",{},"text","4.0"],["fn",{},"text","Jan Prywatny"],["kind",{},"text","individual"],["email",{},"text","jan@example.org"]]]}
+ ]}

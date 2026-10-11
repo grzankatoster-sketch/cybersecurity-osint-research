@@ -1,0 +1,25 @@
+{
+ "query": "zz_testowy",
+ "summaries": {},
+ "analysis": {},
+ "results": {
+  "zz_testowy": [
+   {
+    "site": "A",
+    "url": "https://a.example/zz",
+    "status": "ERROR",
+    "confidence": 0.0,
+    "reason": "timeout",
+    "http_status": null
+   },
+   {
+    "site": "B",
+    "url": "https://b.example/zz",
+    "status": "ERROR",
+    "confidence": 0.0,
+    "reason": "captcha",
+    "http_status": 403
+   }
+  ]
+ }
+}

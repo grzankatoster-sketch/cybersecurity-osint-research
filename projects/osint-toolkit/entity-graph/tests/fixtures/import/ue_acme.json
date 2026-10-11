@@ -1,0 +1,74 @@
+{
+ "query": "acme_testowa",
+ "summaries": {
+  "acme_testowa": {
+   "FOUND": 3,
+   "seconds": 4
+  }
+ },
+ "analysis": {},
+ "results": {
+  "acme_testowa": [
+   {
+    "site": "GitHub",
+    "url": "https://github.com/acme_testowa",
+    "status": "FOUND",
+    "confidence": 0.95,
+    "reason": "tekst profilu + kontrola",
+    "http_status": 200,
+    "profile": {
+     "name": "Acme Testowa",
+     "bio": "bio nie jest przenoszone",
+     "location": "Lublin",
+     "avatar": "https://avatars.example.com/u/7?s=64",
+     "website": "https://acme-testowa.example/",
+     "links": [
+      "https://sklep-acme.example/o-nas",
+      "https://x.com/acme_testowa"
+     ],
+     "created": "2020-01-01"
+    }
+   },
+   {
+    "site": "Twitter",
+    "url": "https://x.com/acme_testowa",
+    "status": "FOUND",
+    "confidence": 0.7,
+    "reason": "tekst profilu",
+    "http_status": 200,
+    "profile": {
+     "name": "Acme Testowa",
+     "avatar": "https://avatars.example.com/u/7?s=400",
+     "website": "https://acme-testowa.example",
+     "links": [
+      "https://github.com/acme_testowa"
+     ]
+    }
+   },
+   {
+    "site": "Slabe",
+    "url": "https://slabe.example/acme_testowa",
+    "status": "FOUND",
+    "confidence": 0.4,
+    "reason": "sam kod 200",
+    "http_status": 200
+   },
+   {
+    "site": "Reddit",
+    "url": "https://reddit.com/u/acme_testowa",
+    "status": "NOT_FOUND",
+    "confidence": 0.0,
+    "reason": "404",
+    "http_status": 404
+   },
+   {
+    "site": "Blokada",
+    "url": "https://b.example/acme_testowa",
+    "status": "ERROR",
+    "confidence": 0.0,
+    "reason": "timeout",
+    "http_status": null
+   }
+  ]
+ }
+}

@@ -1,0 +1,7 @@
+{"tool":"dns-audit 0.1.0","domain":"example.com","resolver":"systemowy","generated":"2026-10-03T12:00:00+00:00","counts":{"OK":5,"INFO":1,"WARN":2,"FAIL":0},
+ "summary":{"a":["93.184.216.34"],"aaaa":["2606:2800:220:1:248:1893:25c8:1946"],"ns":["a.iana-servers.net","b.iana-servers.net"],"soa":{"mname":"ns.icann.org"},
+  "mx":[{"priority":0,"host":"mail.example.com","provider":null}],"txt":["v=spf1 -all"],"caa":[],
+  "spf":{"raw":"v=spf1 -all","records":1,"all":"-all","lookups":0,"lookup_limit":10,"includes":[],"errors":[]},
+  "dmarc":{"raw":"v=DMARC1; p=reject","p":"reject"},"dkim":[],"dnssec":{"dnskey":2,"ds":1,"algorithms":[13],"ad_flag":false},
+  "verifications":[{"service":"Google","category":"search","record":"google-site-verification=abc"}],"failed":{}},
+ "findings":[]}

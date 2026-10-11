@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ultimate-username-engine"
+version = "0.1.0"
+description = "Evidence-based username research engine with bounded asynchronous scheduling"
+requires-python = ">=3.11"
+dependencies = ["aiohttp>=3.12,<4", "regex>=2024.11.6"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "mypy>=1.15", "ruff>=0.11", "types-regex"]
+socks = ["aiohttp-socks>=0.10,<1"]
+
+[project.scripts]
+username-engine = "ultimate_username.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+ultimate_username = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers"
+markers = ["regression(*ids): audited weakness identifiers", "local_http: localhost fixture server"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = [".test-runs", ".test-tmp"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+

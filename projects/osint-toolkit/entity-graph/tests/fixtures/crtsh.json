@@ -1,0 +1,4 @@
+[{"id":111,"issuer_name":"C=US, O=Let's Encrypt, CN=R3","common_name":"www.example.com","name_value":"www.example.com\nexample.com","not_before":"2024-01-02T00:00:00"},
+ {"id":222,"issuer_name":"C=US, O=Let's Encrypt, CN=R3","common_name":"mail.example.com","name_value":"mail.example.com\n*.dev.example.com\nadmin@example.com","not_before":"2024-03-05T00:00:00"},
+ {"id":333,"issuer_name":"x","common_name":"www.example.com","name_value":"WWW.example.com","not_before":"2023-01-01T00:00:00"},
+ {"id":444,"issuer_name":"x","common_name":"evil.com","name_value":"notexample.com\nfoo.example.com.evil.com","not_before":"2023-01-01T00:00:00"}]

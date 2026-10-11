@@ -1,0 +1,150 @@
+{
+  "domains": [
+    {
+      "domain": "example.test",
+      "id": "dom_51a5a9871d0d0bc1",
+      "organization_id": "org_05e8c45de227d261",
+      "source_ids": [
+        "src_7f8d9e67e06c3969"
+      ],
+      "verification_status": "unverified",
+      "verified_at": null
+    }
+  ],
+  "incidents": [
+    {
+      "affected_accounts_count": 12345,
+      "affected_domain": "example.test",
+      "data_classes": [
+        "Email addresses"
+      ],
+      "description": "Syntetyczny incydent opisany w komunikacie CERT.",
+      "id": "inc_9601c84c69141218",
+      "incident_date": "2026-08-15",
+      "name": "DemoBreach",
+      "published_date": "2026-09-01",
+      "source_ids": [
+        "src_979c1aa2bcfa2817"
+      ],
+      "status": [
+        "verified"
+      ],
+      "title": ""
+    }
+  ],
+  "observations": [
+    {
+      "confidence": "high",
+      "derivation": "direct",
+      "entity_id": "per_a76078aa68b60527",
+      "entity_type": "person",
+      "evidence_hash": "7edc7b9c0755a9c4c1ee957381d4e2aa7ab7b9955607e03b3d862c98a2cbc1b6",
+      "evidence_url": "https://www.example.test/zarzad",
+      "id": "obs_735e3bf36094a6be",
+      "notes": "",
+      "observed_at": "2026-10-05T10:05:00Z",
+      "source_id": "src_6f25967fb8ef5d08"
+    },
+    {
+      "confidence": "high",
+      "derivation": "direct",
+      "entity_id": "inc_9601c84c69141218",
+      "entity_type": "incident",
+      "evidence_hash": null,
+      "evidence_url": "https://cert.pl/posts/2026/10/demo-wyciek-stealer",
+      "id": "obs_9f29f24e2a6b2ca5",
+      "notes": "",
+      "observed_at": "2026-10-05T10:10:00Z",
+      "source_id": "src_979c1aa2bcfa2817"
+    },
+    {
+      "confidence": "high",
+      "derivation": "direct",
+      "entity_id": "org_05e8c45de227d261",
+      "entity_type": "organization",
+      "evidence_hash": null,
+      "evidence_url": "https://prs.ms.gov.pl/krs/odpis/0000123456",
+      "id": "obs_e0f787b397e11e0e",
+      "notes": "",
+      "observed_at": "2026-10-05T10:00:00Z",
+      "source_id": "src_7f8d9e67e06c3969"
+    },
+    {
+      "confidence": "high",
+      "derivation": "direct",
+      "entity_id": "dom_51a5a9871d0d0bc1",
+      "entity_type": "domain",
+      "evidence_hash": null,
+      "evidence_url": "https://prs.ms.gov.pl/krs/odpis/0000123456",
+      "id": "obs_e9ef571a3bb5b2d7",
+      "notes": "official_domain z rekordu organizacji",
+      "observed_at": "2026-10-05T10:00:00Z",
+      "source_id": "src_7f8d9e67e06c3969"
+    }
+  ],
+  "organizations": [
+    {
+      "country": "PL",
+      "id": "org_05e8c45de227d261",
+      "krs": "0000123456",
+      "legal_name": "Example Sp. z o.o.",
+      "nip": "5271001238",
+      "official_domain": "example.test",
+      "previous_names": [],
+      "regon": "360123459",
+      "source_ids": [
+        "src_7f8d9e67e06c3969"
+      ]
+    }
+  ],
+  "persons": [
+    {
+      "confidence": "high",
+      "id": "per_a76078aa68b60527",
+      "name": "Jan Kowalski",
+      "organization_id": "org_05e8c45de227d261",
+      "public_email": "jan.kowalski@example.test",
+      "role": "Prezes Zarządu",
+      "source_ids": [
+        "src_6f25967fb8ef5d08"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "sources": [
+    {
+      "content_hash": null,
+      "id": "src_6f25967fb8ef5d08",
+      "license": "first-party",
+      "name": "Strona firmy: zarząd",
+      "notes": "",
+      "reliability": "high",
+      "retrieved_at": "2026-10-05T10:05:00Z",
+      "source_type": "company_website",
+      "url": "https://www.example.test/zarzad"
+    },
+    {
+      "content_hash": null,
+      "id": "src_7f8d9e67e06c3969",
+      "license": "dane publiczne",
+      "name": "Odpis z KRS (syntetyczny)",
+      "notes": "",
+      "reliability": "high",
+      "retrieved_at": "2026-10-05T10:00:00Z",
+      "source_type": "official_registry",
+      "url": "https://prs.ms.gov.pl/krs/odpis/0000123456"
+    },
+    {
+      "content_hash": null,
+      "id": "src_979c1aa2bcfa2817",
+      "license": "CC BY 4.0",
+      "name": "Komunikat CERT (syntetyczny)",
+      "notes": "",
+      "reliability": "high",
+      "retrieved_at": "2026-10-05T10:10:00Z",
+      "source_type": "cert_advisory",
+      "url": "https://cert.pl/posts/2026/10/demo-wyciek-stealer"
+    }
+  ],
+  "verifications": {}
+}

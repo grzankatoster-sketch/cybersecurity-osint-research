@@ -1,0 +1,5 @@
+[
+  {"issuer_ca_id": 1, "common_name": "example.org", "name_value": "example.org\nwww.example.org", "id": 1},
+  {"issuer_ca_id": 1, "common_name": "*.example.org", "name_value": "*.example.org\nvpn.example.org\nadmin@example.org", "id": 2},
+  {"issuer_ca_id": 2, "common_name": "dev.example.org", "name_value": "dev.example.org", "id": 3}
+]

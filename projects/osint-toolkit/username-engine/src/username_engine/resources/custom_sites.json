@@ -1,0 +1,1462 @@
+{
+ "meta": {
+  "note": "reguły zweryfikowane na żywo: scripts/calibrate_sites.py"
+ },
+ "sites": [
+  {
+   "name": "Bitbucket",
+   "url": "https://bitbucket.org/{username}/",
+   "probe_url": "https://api.bitbucket.org/2.0/workspaces/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "us"
+   ],
+   "known": [
+    "atlassian"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Bluesky",
+   "url": "https://bsky.app/profile/{username}",
+   "probe_url": "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor={username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "global",
+    "us"
+   ],
+   "known": [
+    "bsky.app"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 400); losowa: NOT_FOUND (kod 400)"
+  },
+  {
+   "name": "CDA",
+   "url": "https://www.cda.pl/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "video",
+    "pl"
+   ],
+   "known": [
+    "cda"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Chess.com",
+   "url": "https://www.chess.com/member/{username}",
+   "probe_url": "https://api.chess.com/pub/player/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming",
+    "sport",
+    "global",
+    "us"
+   ],
+   "known": [
+    "chesscom"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Codeberg",
+   "url": "https://codeberg.org/{username}",
+   "probe_url": "https://codeberg.org/api/v1/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "de"
+   ],
+   "known": [
+    "Codeberg"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Codeforces",
+   "url": "https://codeforces.com/profile/{username}",
+   "probe_url": "https://codeforces.com/api/user.info?handles={username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "ru"
+   ],
+   "known": [
+    "codeforces"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 400); losowa: NOT_FOUND (kod 400)"
+  },
+  {
+   "name": "Codewars",
+   "url": "https://www.codewars.com/users/{username}",
+   "probe_url": "https://www.codewars.com/api/v1/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "us"
+   ],
+   "known": [
+    "codewars"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Dailymotion",
+   "url": "https://www.dailymotion.com/{username}",
+   "probe_url": "https://api.dailymotion.com/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "video",
+    "eu",
+    "fr"
+   ],
+   "known": [
+    "dailymotion"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Demotywatory",
+   "url": "https://demotywatory.pl/user/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "og:type\" content=\"profile"
+   ],
+   "tags": [
+    "social",
+    "humor",
+    "pl"
+   ],
+   "known": [
+    "demotywatory"
+   ],
+   "source": "custom",
+   "calibrated": "znacznik 'og:type\" content=\"profile': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (przekierowanie poza profil)"
+  },
+  {
+   "name": "DeviantArt",
+   "url": "https://www.deviantart.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "art",
+    "social",
+    "global",
+    "us"
+   ],
+   "known": [
+    "deviantart"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Docker Hub",
+   "url": "https://hub.docker.com/u/{username}",
+   "probe_url": "https://hub.docker.com/v2/users/{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "us"
+   ],
+   "known": [
+    "docker"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Dribbble",
+   "url": "https://dribbble.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "design",
+    "global",
+    "us"
+   ],
+   "known": [
+    "dribbble"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Fotka.com",
+   "url": "https://fotka.com/profil/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "dating",
+    "social",
+    "photo",
+    "pl"
+   ],
+   "known": [
+    "fotka"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Genius",
+   "url": "https://genius.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "music",
+    "global",
+    "us"
+   ],
+   "known": [
+    "genius"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Giphy",
+   "url": "https://giphy.com/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "\"@type\":\"Person\""
+   ],
+   "tags": [
+    "social",
+    "media",
+    "global",
+    "us"
+   ],
+   "known": [
+    "giphy"
+   ],
+   "source": "custom",
+   "calibrated": "znacznik '\"@type\":\"Person\"': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "GitHub",
+   "url": "https://github.com/{username}",
+   "probe_url": "https://api.github.com/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "global",
+    "us"
+   ],
+   "known": [
+    "github"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Gravatar",
+   "url": "https://gravatar.com/{username}",
+   "probe_url": "https://en.gravatar.com/{username}.json",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "links",
+    "global",
+    "us"
+   ],
+   "known": [
+    "gravatar"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Gumroad",
+   "url": "https://{username}.gumroad.com",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "shopping",
+    "creator",
+    "global",
+    "us"
+   ],
+   "known": [
+    "gumroad"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "HackerOne",
+   "url": "https://hackerone.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "security",
+    "global",
+    "us"
+   ],
+   "known": [
+    "hackerone"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Hugging Face",
+   "url": "https://huggingface.co/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "ai",
+    "global",
+    "us"
+   ],
+   "known": [
+    "huggingface"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "itch.io",
+   "url": "https://{username}.itch.io",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming",
+    "global",
+    "us"
+   ],
+   "known": [
+    "itch"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Jbzd",
+   "url": "https://jbzd.com.pl/uzytkownik/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "humor",
+    "pl"
+   ],
+   "known": [
+    "jbzd"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Kick",
+   "url": "https://kick.com/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "\"@type\":\"Person\""
+   ],
+   "tags": [
+    "video",
+    "gaming",
+    "global",
+    "us"
+   ],
+   "known": [
+    "kick"
+   ],
+   "source": "custom",
+   "calibrated": "znacznik '\"@type\":\"Person\"': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "Lichess",
+   "url": "https://lichess.org/@/{username}",
+   "probe_url": "https://lichess.org/api/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming",
+    "sport",
+    "global",
+    "fr"
+   ],
+   "known": [
+    "lichess"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Linktree",
+   "url": "https://linktr.ee/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "links",
+    "global",
+    "au"
+   ],
+   "known": [
+    "linktree"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Mastodon.social",
+   "url": "https://mastodon.social/@{username}",
+   "probe_url": "https://mastodon.social/api/v1/accounts/lookup?acct={username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "fediverse",
+    "global",
+    "de"
+   ],
+   "known": [
+    "Mastodon"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Mixcloud",
+   "url": "https://www.mixcloud.com/{username}/",
+   "probe_url": "https://api.mixcloud.com/{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "music",
+    "global",
+    "gb"
+   ],
+   "known": [
+    "mixcloud"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Patreon",
+   "url": "https://www.patreon.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "creator",
+    "global",
+    "us"
+   ],
+   "known": [
+    "patreon"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Pepper.pl",
+   "url": "https://www.pepper.pl/profile/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "shopping",
+    "forum",
+    "pl"
+   ],
+   "known": [
+    "pepper"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 410); losowa: NOT_FOUND (kod 410)"
+  },
+  {
+   "name": "Pikabu",
+   "url": "https://pikabu.ru/@{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "humor",
+    "eu",
+    "ru"
+   ],
+   "known": [
+    "pikabu"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Pinterest",
+   "url": "https://www.pinterest.com/{username}/",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "\"@type\":\"Person\""
+   ],
+   "tags": [
+    "social",
+    "photo",
+    "global",
+    "us"
+   ],
+   "known": [
+    "pinterest"
+   ],
+   "source": "custom",
+   "calibrated": "znacznik '\"@type\":\"Person\"': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "Roblox",
+   "url": "https://www.roblox.com/user.aspx?username={username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming",
+    "global",
+    "us"
+   ],
+   "known": [
+    "Roblox"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "SoundCloud",
+   "url": "https://soundcloud.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "music",
+    "global",
+    "de"
+   ],
+   "known": [
+    "soundcloud"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Tekstowo.pl",
+   "url": "https://www.tekstowo.pl/profil,{username}.html",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "music",
+    "forum",
+    "pl"
+   ],
+   "known": [
+    "tekstowo"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Trello",
+   "url": "https://trello.com/u/{username}",
+   "probe_url": "https://trello.com/1/members/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "productivity",
+    "global",
+    "us"
+   ],
+   "known": [
+    "trello"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Tumblr",
+   "url": "https://{username}.tumblr.com",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "blog",
+    "social",
+    "global",
+    "us"
+   ],
+   "known": [
+    "staff"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Twitch",
+   "url": "https://www.twitch.tv/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "\"@type\":\"Person\""
+   ],
+   "tags": [
+    "video",
+    "gaming",
+    "global",
+    "us"
+   ],
+   "known": [
+    "twitch"
+   ],
+   "source": "custom",
+   "calibrated": "znacznik '\"@type\":\"Person\"': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "Wattpad",
+   "url": "https://www.wattpad.com/user/{username}",
+   "probe_url": "https://www.wattpad.com/api/v3/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "blog",
+    "social",
+    "global",
+    "ca"
+   ],
+   "known": [
+    "Wattpad"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 400); losowa: NOT_FOUND (kod 400)"
+  },
+  {
+   "name": "Wykop",
+   "url": "https://wykop.pl/ludzie/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "forum",
+    "pl"
+   ],
+   "known": [
+    "wykop"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Hejto",
+   "url": "https://www.hejto.pl/uzytkownik/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "e_code": 200,
+   "m_code": 500,
+   "tags": [
+    "pl",
+    "social"
+   ],
+   "known": [
+    "hejto"
+   ],
+   "source": "custom",
+   "calibrated": "reczna regula: znane: FOUND 0.80 (kod 200 vs kontrola 500); losowa: NOT_FOUND (kod braku konta (500))"
+  },
+  {
+   "name": "JoeMonster",
+   "url": "https://joemonster.org/bojownik/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "profilLeft"
+   ],
+   "tags": [
+    "pl",
+    "social",
+    "humor"
+   ],
+   "known": [
+    "JoeMonster"
+   ],
+   "source": "custom",
+   "calibrated": "reczna regula: znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "X",
+   "url": "https://x.com/{username}",
+   "probe_url": "https://api.fxtwitter.com/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "e_code": 200,
+   "m_code": 404,
+   "regex": "^[A-Za-z0-9_]{1,15}$",
+   "tags": [
+    "social",
+    "global",
+    "us"
+   ],
+   "known": [
+    "jack"
+   ],
+   "source": "custom",
+   "calibrated": "publiczne API FxTwitter: 200 + dane profilu / 404 'User not found' (03.10.2026)"
+  },
+  {
+   "name": "Reddit",
+   "url": "https://www.reddit.com/user/{username}",
+   "probe_url": "https://www.reddit.com/user/{username}.rss",
+   "method": "GET",
+   "check_type": "status_code",
+   "e_code": 200,
+   "m_code": 404,
+   "regex": "^[A-Za-z0-9_-]{3,20}$",
+   "tags": [
+    "social",
+    "news",
+    "global",
+    "us"
+   ],
+   "known": [
+    "spez"
+   ],
+   "source": "custom",
+   "calibrated": "kanał RSS profilu: 200 / 404; about.json i old.reddit blokowane (03.10.2026)"
+  },
+  {
+   "name": "BikeStats",
+   "url": "https://{username}.bikestats.pl/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "cycling",
+    "pl"
+   ],
+   "known": [
+    "marek"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Komoot",
+   "url": "https://www.komoot.com/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "outdoor",
+    "hiking",
+    "cycling",
+    "global"
+   ],
+   "known": [
+    "komoot"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Relive",
+   "url": "https://www.relive.com/profile/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "fitness",
+    "outdoor",
+    "global"
+   ],
+   "known": [
+    "relive"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Runkeeper",
+   "url": "https://runkeeper.com/user/{username}/profile",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "fitness",
+    "running",
+    "global"
+   ],
+   "known": [
+    "runkeeper"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "theTopo (27crags)",
+   "url": "https://thetopo.com/climbers/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "climbing",
+    "outdoor",
+    "global"
+   ],
+   "known": [
+    "rasmusbolling"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Traseo",
+   "url": "https://www.traseo.pl/profil/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "sport",
+    "outdoor",
+    "hiking",
+    "cycling",
+    "pl"
+   ],
+   "known": [
+    "Admin"
+   ],
+   "source": "custom",
+   "calibrated": "znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Strava",
+   "url": "https://www.strava.com/athletes/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_code": 200,
+   "e_strings": [
+    "og:url\" content=\"https://www.strava.com/athletes/{username}\""
+   ],
+   "m_code": 404,
+   "regex": "^[0-9]{1,12}$",
+   "tags": [
+    "fitness",
+    "sport",
+    "social",
+    "global"
+   ],
+   "source": "custom",
+   "known": [
+    "304133"
+   ],
+   "calibrated": "reczna kalibracja 04.10.2026: tylko numeryczne ID atlety; istniejace ID = 200 + og:url z ID, nieistniejace (999999999, 987654321) = 404; nazwa tekstowa -> UNSUPPORTED bez zapytania"
+  },
+  {
+   "name": "Mountain Project",
+   "url": "https://www.mountainproject.com/user/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_code": 200,
+   "e_strings": [
+    "og:url\" content=\"https://www.mountainproject.com/user/{username}/"
+   ],
+   "m_code": 404,
+   "regex": "^[0-9]{1,10}$",
+   "tags": [
+    "sport",
+    "climbing",
+    "outdoor",
+    "global"
+   ],
+   "source": "custom",
+   "known": [
+    "200000001"
+   ],
+   "calibrated": "reczna kalibracja 04.10.2026: tylko numeryczne ID (profil przekierowuje na /user/ID/slug); istniejace = 200 + og:url z ID, nieistniejace = 404"
+  },
+  {
+   "name": "Hevy",
+   "url": "https://hevy.com/user/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "{username}&#x27;s Hevy Profile"
+   ],
+   "tags": [
+    "fitness",
+    "sport",
+    "global"
+   ],
+   "source": "custom",
+   "known": [
+    "hevy"
+   ],
+   "calibrated": "reczna kalibracja 04.10.2026: serwis zawsze 200; istniejace konto ma <title>{nazwa}'s Hevy Profile</title>, losowa nazwa bez tytulu; kontrola losowa = NOT_FOUND"
+  },
+  {
+   "name": "XContest",
+   "url": "https://www.xcontest.org/world/en/pilots/detail:{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_code": 404,
+   "e_strings": [
+    "[{username}] ::"
+   ],
+   "m_strings": [
+    "Pilot detail :: XContest"
+   ],
+   "tags": [
+    "sport",
+    "outdoor",
+    "paragliding",
+    "global"
+   ],
+   "source": "custom",
+   "known": [
+    "chrigel"
+   ],
+   "calibrated": "reczna kalibracja 04.10.2026: serwis odpowiada 404 takze dla istniejacych pilotow; rozroznia tytul 'Pilot detail : Imie [nick] ::' vs 'Pilot detail ::' (brak konta)"
+  },
+  {
+   "name": "BiggerPockets",
+   "url": "https://www.biggerpockets.com/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "finance",
+    "business",
+    "networking"
+   ],
+   "known": [
+    "chasel9"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "bitpapa.com",
+   "url": "https://bitpapa.com/ru/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "crypto",
+    "finance",
+    "trading",
+    "ru"
+   ],
+   "known": [
+    "Larisa70"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "CastingCallClub",
+   "url": "https://www.castingcall.club/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "profile:username"
+   ],
+   "tags": [
+    "business",
+    "art",
+    "social"
+   ],
+   "known": [
+    "Lindz"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znacznik 'profile:username': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (przekierowanie poza profil)"
+  },
+  {
+   "name": "Chyoa",
+   "url": "https://chyoa.com/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "xx NSFW xx"
+   ],
+   "known": [
+    "carlos01"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.aliceblueonline.com",
+   "url": "https://community.aliceblueonline.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "Rakshitha_M"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.appfarm.io",
+   "url": "https://community.appfarm.io/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "kristian"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.firecore.com",
+   "url": "https://community.firecore.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "james"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.openrent.co.uk",
+   "url": "https://community.openrent.co.uk/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum",
+    "gb"
+   ],
+   "known": [
+    "Colin3"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.tempest.earth",
+   "url": "https://community.tempest.earth/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "eric"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.unix.com",
+   "url": "https://community.unix.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "coding",
+    "discussion",
+    "forum",
+    "tech"
+   ],
+   "known": [
+    "Neo"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "community.worldradioleague.com",
+   "url": "https://community.worldradioleague.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "K4AZE"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "connect.superhuman.com",
+   "url": "https://connect.superhuman.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "Paul_Danyliuk"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Daily Kos",
+   "url": "https://www.dailykos.com/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "news",
+    "us"
+   ],
+   "known": [
+    "kos"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "FACEIT",
+   "url": "https://www.faceit.com/en/players/{username}",
+   "probe_url": "https://www.faceit.com/api/users/v1/nicknames/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming",
+    "forum",
+    "social"
+   ],
+   "known": [
+    "w0nderful"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "forum.centrala-termica.ro",
+   "url": "https://forum.centrala-termica.ro/memberlist.php?mode=viewprofile&un={username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum",
+    "ro",
+    "tech"
+   ],
+   "known": [
+    "catalinc"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "forum.lightburnsoftware.com",
+   "url": "https://forum.lightburnsoftware.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "LightBurn"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "forum.progressionproject.com",
+   "url": "https://forum.progressionproject.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "Matt"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Game Jolt",
+   "url": "https://gamejolt.com/@{username}",
+   "probe_url": "https://gamejolt.com/site-api/web/profile/@{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming"
+   ],
+   "known": [
+    "nilllzz"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "GitCode",
+   "url": "https://gitcode.com/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "og:type\" content=\"profile"
+   ],
+   "tags": [
+    "cn",
+    "coding"
+   ],
+   "known": [
+    "chatgpt"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znacznik 'og:type\" content=\"profile': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (brak tekstu obecności konta)"
+  },
+  {
+   "name": "ifunny",
+   "url": "https://ifunny.co/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "misc",
+    "sharing",
+    "social"
+   ],
+   "known": [
+    "john"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "kiwifarms.cc",
+   "url": "https://kiwifarms.cc/users/{username}",
+   "probe_url": "https://kiwifarms.cc/.well-known/webfinger?resource=acct:{username}@kiwifarms.cc",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social"
+   ],
+   "known": [
+    "crunklord420"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "komunita.svetandroida.cz",
+   "url": "https://komunita.svetandroida.cz/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "cz",
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "Jiri_Novotny"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "palnet",
+   "url": "https://www.palnet.io/@{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social"
+   ],
+   "known": [
+    "trincowski-pt"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "pokemonshowdown",
+   "url": "https://pokemonshowdown.com/users/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "gaming"
+   ],
+   "known": [
+    "blue"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "poker-academie.com",
+   "url": "https://www.poker-academie.com/forum/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum",
+    "fr",
+    "gambling"
+   ],
+   "known": [
+    "Grimaldi44"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "QUEER PL",
+   "url": "https://queer.pl/user/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "social",
+    "pl"
+   ],
+   "known": [
+    "kowalski"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Radiomed",
+   "url": "https://radiomed.ru/users/{username}",
+   "method": "GET",
+   "check_type": "message",
+   "e_strings": [
+    "og:type\" content=\"profile"
+   ],
+   "tags": [
+    "music",
+    "ru"
+   ],
+   "known": [
+    "red"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znacznik 'og:type\" content=\"profile': znane: FOUND 0.99 (tekst obecności konta + kontrola potwierdza); losowa: NOT_FOUND (przekierowanie na wyszukiwarkę serwisu zamiast profilu)"
+  },
+  {
+   "name": "routers.world",
+   "url": "https://routers.world/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "khalid"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Shesfreaky",
+   "url": "https://www.shesfreaky.com/profile/{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "xx NSFW xx"
+   ],
+   "known": [
+    "tata23"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Subscribestar",
+   "url": "https://subscribestar.adult/{username}",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "xx NSFW xx"
+   ],
+   "known": [
+    "honey"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "Tinkoff Invest",
+   "url": "https://www.tbank.ru/invest/social/profile/{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "finance",
+    "ru"
+   ],
+   "known": [
+    "adam"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.60 (kod 200 vs kontrola 404 [certyfikat nieważny, TLS bez weryfikacji]); losowa: NOT_FOUND (kod 404 [certyfikat nieważny, TLS bez weryfikacji])"
+  },
+  {
+   "name": "Ultras Diary",
+   "url": "http://ultrasdiary.pl/u/{username}/",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "hobby",
+    "forum",
+    "pl",
+    "social"
+   ],
+   "known": [
+    "janek"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  },
+  {
+   "name": "www.nodeloc.com",
+   "url": "https://www.nodeloc.com/u/{username}/summary",
+   "method": "GET",
+   "check_type": "status_code",
+   "tags": [
+    "discussion",
+    "forum"
+   ],
+   "known": [
+    "James"
+   ],
+   "source": "custom",
+   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
+  }
+ ]
+}

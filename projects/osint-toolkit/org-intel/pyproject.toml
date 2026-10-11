@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "org-intel"
+version = "0.1.0"
+description = "Rejestr informacji o firmach, domenach, publicznych osobach i publicznie opisanych incydentach z obowiazkowa proweniencja (bez dumpow wyciekow)"
+requires-python = ">=3.12"
+dependencies = []  # tylko stdlib: HTTP przez urllib
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+org-intel = "org_intel.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"

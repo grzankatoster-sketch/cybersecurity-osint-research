@@ -1,0 +1,1 @@
+{"results":{"x":[{"site":"B","url":"https://b.example/x","status":"NOT_FOUND","reason":"404"},{"site":"U","url":"https://u.example/x","status":"UNSUPPORTED","reason":"regex"}]}}

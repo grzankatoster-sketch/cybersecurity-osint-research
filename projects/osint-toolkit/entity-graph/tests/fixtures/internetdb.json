@@ -1,0 +1,1 @@
+{"cpes":["cpe:/a:nginx:nginx:1.18.0"],"hostnames":["one.one.one.one","Evil<script>.example.com"],"ip":"1.1.1.1","ports":[80,443,53],"tags":["cdn"],"vulns":["CVE-2021-0001"]}

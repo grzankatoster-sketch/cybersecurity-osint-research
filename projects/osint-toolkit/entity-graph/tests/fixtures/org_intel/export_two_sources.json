@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "exported_at": "2026-10-05T13:10:37Z",
+  "emails_masked": true,
+  "attribution": [
+    {
+      "text": "Dane o incydentach pochodzą z publicznego katalogu Have I Been Pwned (https://haveibeenpwned.com), udostępnionego na licencji Creative Commons Attribution 4.0.",
+      "source": "Have I Been Pwned",
+      "url": "https://haveibeenpwned.com",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "id": "src_54ffadd80058538f",
+      "name": "Katalog HIBP (syntetyczny)",
+      "url": "https://haveibeenpwned.com/api/v3/breach/DemoBreach",
+      "source_type": "hibp_catalog",
+      "license": "CC BY 4.0 (wymagana atrybucja: Have I Been Pwned)",
+      "retrieved_at": "2026-10-05T10:20:00Z",
+      "reliability": "medium",
+      "notes": "",
+      "content_hash": null
+    },
+    {
+      "id": "src_6f25967fb8ef5d08",
+      "name": "Strona firmy: zarząd",
+      "url": "https://www.example.test/zarzad",
+      "source_type": "company_website",
+      "license": "first-party",
+      "retrieved_at": "2026-10-05T10:05:00Z",
+      "reliability": "high",
+      "notes": "",
+      "content_hash": null
+    },
+    {
+      "id": "src_7f8d9e67e06c3969",
+      "name": "Odpis z KRS (syntetyczny)",
+      "url": "https://prs.ms.gov.pl/krs/odpis/0000123456",
+      "source_type": "official_registry",
+      "license": "dane publiczne",
+      "retrieved_at": "2026-10-05T10:00:00Z",
+      "reliability": "high",
+      "notes": "",
+      "content_hash": null
+    },
+    {
+      "id": "src_979c1aa2bcfa2817",
+      "name": "Komunikat CERT (syntetyczny)",
+      "url": "https://cert.pl/posts/2026/10/demo-wyciek-stealer",
+      "source_type": "cert_advisory",
+      "license": "CC BY 4.0",
+      "retrieved_at": "2026-10-05T10:10:00Z",
+      "reliability": "high",
+      "notes": "",
+      "content_hash": null
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org_05e8c45de227d261",
+      "legal_name": "Example Sp. z o.o.",
+      "previous_names": [],
+      "krs": "0000123456",
+      "nip": "5271001238",
+      "regon": "360123459",
+      "country": "PL",
+      "official_domain": "example.test",
+      "source_ids": [
+        "src_7f8d9e67e06c3969"
+      ]
+    }
+  ],
+  "domains": [
+    {
+      "id": "dom_51a5a9871d0d0bc1",
+      "domain": "example.test",
+      "organization_id": "org_05e8c45de227d261",
+      "verification_status": "unverified",
+      "verified_at": null,
+      "source_ids": [
+        "src_7f8d9e67e06c3969"
+      ]
+    }
+  ],
+  "persons": [
+    {
+      "id": "per_a76078aa68b60527",
+      "name": "Jan Kowalski",
+      "role": "Prezes Zarządu",
+      "organization_id": "org_05e8c45de227d261",
+      "public_email": "j***@example.test",
+      "source_ids": [
+        "src_6f25967fb8ef5d08"
+      ],
+      "confidence": "high"
+    }
+  ],
+  "incidents": [
+    {
+      "id": "inc_9601c84c69141218",
+      "name": "DemoBreach",
+      "incident_date": "2026-08-15",
+      "published_date": "2026-09-01",
+      "affected_domain": "example.test",
+      "affected_accounts_count": 12345,
+      "data_classes": [
+        "Email addresses"
+      ],
+      "status": [
+        "verified"
+      ],
+      "description": "Syntetyczny incydent opisany w komunikacie CERT.",
+      "source_ids": [
+        "src_979c1aa2bcfa2817",
+        "src_54ffadd80058538f"
+      ],
+      "title": ""
+    }
+  ],
+  "observations": [
+    {
+      "id": "obs_3b2ca994d152b746",
+      "entity_type": "incident",
+      "entity_id": "inc_9601c84c69141218",
+      "source_id": "src_54ffadd80058538f",
+      "observed_at": "2026-10-05T10:20:00Z",
+      "evidence_url": "https://haveibeenpwned.com/api/v3/breach/DemoBreach",
+      "confidence": "medium",
+      "derivation": "direct",
+      "evidence_hash": null,
+      "notes": ""
+    },
+    {
+      "id": "obs_735e3bf36094a6be",
+      "entity_type": "person",
+      "entity_id": "per_a76078aa68b60527",
+      "source_id": "src_6f25967fb8ef5d08",
+      "observed_at": "2026-10-05T10:05:00Z",
+      "evidence_url": "https://www.example.test/zarzad",
+      "confidence": "high",
+      "derivation": "direct",
+      "evidence_hash": "7edc7b9c0755a9c4c1ee957381d4e2aa7ab7b9955607e03b3d862c98a2cbc1b6",
+      "notes": ""
+    },
+    {
+      "id": "obs_9f29f24e2a6b2ca5",
+      "entity_type": "incident",
+      "entity_id": "inc_9601c84c69141218",
+      "source_id": "src_979c1aa2bcfa2817",
+      "observed_at": "2026-10-05T10:10:00Z",
+      "evidence_url": "https://cert.pl/posts/2026/10/demo-wyciek-stealer",
+      "confidence": "high",
+      "derivation": "direct",
+      "evidence_hash": null,
+      "notes": ""
+    },
+    {
+      "id": "obs_e0f787b397e11e0e",
+      "entity_type": "organization",
+      "entity_id": "org_05e8c45de227d261",
+      "source_id": "src_7f8d9e67e06c3969",
+      "observed_at": "2026-10-05T10:00:00Z",
+      "evidence_url": "https://prs.ms.gov.pl/krs/odpis/0000123456",
+      "confidence": "high",
+      "derivation": "direct",
+      "evidence_hash": null,
+      "notes": ""
+    },
+    {
+      "id": "obs_e9ef571a3bb5b2d7",
+      "entity_type": "domain",
+      "entity_id": "dom_51a5a9871d0d0bc1",
+      "source_id": "src_7f8d9e67e06c3969",
+      "observed_at": "2026-10-05T10:00:00Z",
+      "evidence_url": "https://prs.ms.gov.pl/krs/odpis/0000123456",
+      "confidence": "high",
+      "derivation": "direct",
+      "evidence_hash": null,
+      "notes": "official_domain z rekordu organizacji"
+    }
+  ]
+}

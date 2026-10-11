@@ -1,0 +1,23 @@
+[project]
+name = "net-intel"
+version = "0.1.0"
+description = "Pasywny wywiad o infrastrukturze sieciowej: adres IP (ipinfo + PTR), RDAP domeny, subdomeny z logow CT i HackerTarget"
+requires-python = ">=3.12"
+dependencies = []  # HTTP przez stdlib urllib: zero zaleznosci uruchomieniowych
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+net-intel = "net_intel.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

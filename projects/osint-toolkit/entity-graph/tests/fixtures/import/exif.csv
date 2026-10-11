@@ -1,0 +1,3 @@
+﻿path,taken,taken_field,camera,make,model,software,lat,lon,altitude,direction,width,height,has_gps,source,error
+zdjecia/IMG_0001.jpg,2026-05-01T10:00:00,DateTimeOriginal,TestCam X1,TestCam,TestCam X1,TestSoft 1.0,52.2297,21.0122,110.5,90.0,4000,3000,True,pillow,
+zdjecia/IMG_0002.jpg,2026-05-01T10:00:00,DateTimeOriginal,TestCam X1,TestCam,TestCam X1,,,,,,4000,3000,False,pillow,

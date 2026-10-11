@@ -1,0 +1,3 @@
+﻿input;valid;possible;region;country_name;country_code;geo_description;line_type;carrier;carrier_note;carrier_check_url;timezones;e164;international;national;rfc3966;error
+'+48603123456;True;True;PL;Polska;48;Polska;komórkowy;Plus;x;https://numeracja.uke.gov.pl/;Europe/Warsaw;'+48603123456;'+48 603 123 456;603 123 456;tel:+48-603-123-456;
+abc;False;False;;;;;;;;;;;;;;nie da sie sparsowac numeru

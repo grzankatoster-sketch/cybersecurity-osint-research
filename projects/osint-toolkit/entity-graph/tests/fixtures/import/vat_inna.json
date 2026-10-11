@@ -1,0 +1,23 @@
+{
+ "result": {
+  "subject": {
+   "name": "INNA SPOLKA ZOO",
+   "nip": "7770000001",
+   "statusVat": "Czynny",
+   "regon": "987654321",
+   "pesel": null,
+   "krs": "0000999002",
+   "residenceAddress": null,
+   "workingAddress": "INNA 5, 00-001 WARSZAWA",
+   "representatives": [],
+   "authorizedClerks": [],
+   "partners": [],
+   "accountNumbers": [
+    "61 1090 1014 0000 0712 1981 2874"
+   ],
+   "hasVirtualAccounts": false
+  },
+  "requestId": "SYNTH-2",
+  "requestDateTime": "03-10-2026 07:25:10"
+ }
+}

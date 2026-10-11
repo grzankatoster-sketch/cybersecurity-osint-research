@@ -1,0 +1,381 @@
+[
+  {
+    "id": "github_json",
+    "body": "{\"login\": \"alice\", \"id\": 42, \"name\": \"Alicja Testowa\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": 1200, \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "display_name": "Alicja Testowa",
+      "bio": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "followers": 1200,
+      "following": 0,
+      "public_repos_count": 3,
+      "public_gists_count": 0,
+      "location": "Warszawa",
+      "website": "https://example.test/",
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "is_looking_for_job": false
+    },
+    "kind": "json",
+    "status": 200,
+    "rules": [
+      {
+        "name": "display_name",
+        "strategy": "json",
+        "path": [
+          "name"
+        ],
+        "owner_path": [
+          "login"
+        ]
+      },
+      {
+        "name": "followers",
+        "strategy": "json",
+        "path": [
+          "followers"
+        ],
+        "owner_path": [
+          "login"
+        ]
+      }
+    ],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "og_profile",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\">",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "description": "Fixture bio",
+      "avatar_url": "https://profiles.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "og_attribute_order",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta content=\"Alicja Testowa\" property=\"og:title\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\">",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "description": "Fixture bio",
+      "avatar_url": "https://profiles.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "og_duplicates",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\"><meta property=\"og:title\" content=\"Wrong duplicate\">",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "description": "Fixture bio",
+      "avatar_url": "https://profiles.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "generic_site",
+    "body": "<title>Twitter / X</title><meta property=\"og:title\" content=\"Twitter\"><meta property=\"og:description\" content=\"Join our community\">",
+    "expected": {},
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "wrong_owner",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"bob\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\">",
+    "expected": {},
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "jsonld_profile",
+    "body": "<script type=\"application/ld+json\">{\"@type\": \"ProfilePage\", \"mainEntity\": {\"@type\": \"Person\", \"alternateName\": \"alice\", \"name\": \"Alicja Testowa\", \"url\": \"https://profiles.example.test/u/alice\", \"image\": \"/a.png\", \"description\": \"Fixture bio\", \"identifier\": \"42\", \"sameAs\": [\"https://example.test/\"]}}</script>",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "description": "Fixture bio",
+      "avatar_url": "https://profiles.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "user_id": "42",
+      "external_links": [
+        "https://example.test/"
+      ]
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "jsonld_organization",
+    "body": "<script type=\"application/ld+json\">{\"@type\": \"Organization\", \"alternateName\": \"alice\", \"name\": \"Alicja Testowa\", \"url\": \"https://profiles.example.test/u/alice\", \"image\": \"/a.png\", \"description\": \"Fixture bio\", \"identifier\": \"42\", \"sameAs\": [\"https://example.test/\"]}</script>",
+    "expected": {},
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "hydration_owner",
+    "body": "<script id=\"__NEXT_DATA__\" type=\"application/json\">{\"props\": {\"pageProps\": {\"viewer\": {\"login\": \"bob\", \"id\": 42, \"name\": \"Wrong viewer\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": 1200, \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}, \"profile\": {\"login\": \"alice\", \"id\": 42, \"name\": \"Alicja Testowa\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": 1200, \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}}}}</script>",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "display_name": "Alicja Testowa",
+      "bio": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "followers": 1200,
+      "following": 0,
+      "public_repos_count": 3,
+      "public_gists_count": 0,
+      "location": "Warszawa",
+      "website": "https://example.test/",
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "is_looking_for_job": false
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "malformed_with_fallback",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\"><script type=\"application/json\">{\"broken\":</script>",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "description": "Fixture bio",
+      "avatar_url": "https://profiles.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "json_malformed",
+    "body": "{\"gists_url\": \"x\", \"received_events_url\": \"x\", \"broken\":}",
+    "expected": {},
+    "kind": "json",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "blocked_profile",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\"><title>Just a moment</title>",
+    "expected": {},
+    "kind": "html",
+    "status": 403,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "missing_profile",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:type\" content=\"profile\"><meta property=\"profile:username\" content=\"alice\"><meta property=\"og:title\" content=\"Alicja Testowa\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"/a.png\">",
+    "expected": {},
+    "kind": "html",
+    "status": 404,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "discourse",
+    "body": "<link rel=\"canonical\" href=\"https://profiles.example.test/u/alice\"><meta property=\"og:description\" content=\"Fixture bio\"><meta property=\"og:image\" content=\"https://img.example.test/a.png\"><div class=\"discourse\">",
+    "expected": {
+      "username": "alice",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "description": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [
+      {
+        "name": "bio",
+        "strategy": "discourse",
+        "path": [
+          "bio"
+        ]
+      }
+    ],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "xenforo",
+    "body": "<meta property=\"og:url\" content=\"https://profiles.example.test/members/alice.42/\"><meta property=\"og:image\" content=\"https://img.example.test/a.png\"><div class=\"memberHeader\" data-user-id=\"42\">",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "profile_url": "https://profiles.example.test/members/alice.42/",
+      "avatar_url": "https://img.example.test/a.png"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [
+      {
+        "name": "user_id",
+        "strategy": "xenforo",
+        "path": [
+          "uid"
+        ]
+      }
+    ],
+    "url": "https://profiles.example.test/members/alice.42/",
+    "username": "alice"
+  },
+  {
+    "id": "changed_structure",
+    "body": "{\"data\": {\"account\": {\"login\": \"alice\", \"id\": 42, \"name\": \"Alicja Testowa\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": 1200, \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}}}",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "display_name": "Alicja Testowa",
+      "bio": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "followers": 1200,
+      "following": 0,
+      "public_repos_count": 3,
+      "public_gists_count": 0,
+      "location": "Warszawa",
+      "website": "https://example.test/",
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "is_looking_for_job": false
+    },
+    "kind": "json",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "ambiguous_counter",
+    "body": "{\"login\": \"alice\", \"id\": 42, \"name\": \"Alicja Testowa\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": \"1,2K\", \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "display_name": "Alicja Testowa",
+      "bio": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "following": 0,
+      "public_repos_count": 3,
+      "public_gists_count": 0,
+      "location": "Warszawa",
+      "website": "https://example.test/",
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "is_looking_for_job": false
+    },
+    "kind": "json",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "compact_counter",
+    "body": "{\"login\": \"alice\", \"id\": 42, \"name\": \"Alicja Testowa\", \"bio\": \"Fixture bio\", \"avatar_url\": \"https://img.example.test/a.png\", \"html_url\": \"https://profiles.example.test/u/alice\", \"followers\": \"1.2K\", \"following\": 0, \"public_repos\": 3, \"public_gists\": 0, \"location\": \"Warszawa\", \"blog\": \"https://example.test/\", \"created_at\": \"2020-01-02T03:04:05Z\", \"hireable\": false, \"gists_url\": \"https://api.github.com/users/alice/gists\", \"received_events_url\": \"https://api.github.com/users/alice/received_events\"}",
+    "expected": {
+      "username": "alice",
+      "user_id": "42",
+      "display_name": "Alicja Testowa",
+      "bio": "Fixture bio",
+      "avatar_url": "https://img.example.test/a.png",
+      "profile_url": "https://profiles.example.test/u/alice",
+      "followers": 1200,
+      "following": 0,
+      "public_repos_count": 3,
+      "public_gists_count": 0,
+      "location": "Warszawa",
+      "website": "https://example.test/",
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "is_looking_for_job": false
+    },
+    "kind": "json",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "empty_optional",
+    "body": "{\"username\": \"alice\", \"display_name\": \"Alicja Testowa\", \"followers\": 0, \"verified\": false, \"bio\": null}",
+    "expected": {
+      "username": "alice",
+      "display_name": "Alicja Testowa",
+      "followers": 0,
+      "verified": false
+    },
+    "kind": "json",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "itch_generic",
+    "body": "<meta name=\"itch:path\" content=\"itch.io\"><meta property=\"og:title\" content=\"itch.io - community\">",
+    "expected": {},
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://profiles.example.test/u/alice",
+    "username": "alice"
+  },
+  {
+    "id": "patreon_rsc_not_ported",
+    "body": "<script>self.__next_f.push([1,\"0:{\\\"pageBootstrap\\\": {\\\"campaign\\\": {\\\"data\\\": {\\\"attributes\\\": {\\\"avatar_photo_url\\\": \\\"https://img.example.test/a.png\\\", \\\"cover_photo_url\\\": \\\"https://img.example.test/b.png\\\", \\\"is_nsfw\\\": false, \\\"published_at\\\": \\\"2020-01-02T03:04:05Z\\\", \\\"summary\\\": \\\"Fixture bio\\\", \\\"pledge_url\\\": \\\"https://www.patreon.com/alice\\\"}}, \\\"included\\\": [{\\\"type\\\": \\\"user\\\", \\\"id\\\": \\\"42\\\", \\\"attributes\\\": {\\\"vanity\\\": \\\"alice\\\", \\\"full_name\\\": \\\"Alicja Testowa\\\"}}]}}}\\n\"])</script>",
+    "expected": {
+      "patreon_id": "42",
+      "patreon_username": "alice",
+      "display_name": "Alicja Testowa",
+      "avatar_url": "https://img.example.test/a.png",
+      "banner_url": "https://img.example.test/b.png",
+      "is_nsfw": false,
+      "created_at": "2020-01-02T03:04:05+00:00",
+      "bio": "Fixture bio"
+    },
+    "kind": "html",
+    "status": 200,
+    "rules": [],
+    "url": "https://www.patreon.com/alice",
+    "username": "alice"
+  }
+]

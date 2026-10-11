@@ -1,0 +1,494 @@
+[
+ {
+  "name": "Trailforks",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (Attention Required! | Cloudflare)); losowa: ERROR (blokada anty-bot (Attention Required! | Cloudflare))"
+ },
+ {
+  "name": "Allegro",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikiloc",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Endomondo",
+  "why": "martwy: serwis zamkniety 31.12.2020, domena za Cloudflare (403)"
+ },
+ {
+  "name": "theCrag",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "8a.nu",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "AllTrails",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Runalyze",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "FatSecret",
+  "why": "znane: ERROR 0.00 (wymaga logowania (formularz hasła zamiast profilu)); losowa: ERROR (wymaga logowania (formularz hasła zamiast profilu))"
+ },
+ {
+  "name": "Bikemap",
+  "why": "znane: ERROR 0.00 (timeout); losowa: ERROR (timeout)"
+ },
+ {
+  "name": "Forum Pasja Informatyki",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "SPOJ",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Mastodon 101010.pl",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Mastodon.com.pl",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "blog.pl",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "pr0gramm",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Xing",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Jeuxvideo.com",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Mamot.fr",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Mastodon.nl",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Rajce.idnes.cz",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Blog.cz",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "DOU.ua",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Menéame",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Mediavida",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Blogg.se",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "IRC-Galleria",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Blog.hu",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Spreaker",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "X (Twitter)",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Instagram",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Facebook",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "LinkedIn",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Substack",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "WordPress.com",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Spotify",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Steam",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "NameMC",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Keybase",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "MyAnimeList",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Etsy",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "eBay",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "OpenStreetMap",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Fandom",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Weheartit",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Product Hunt",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Pastebin",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "npm",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "PyPI",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "SourceForge",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "TryHackMe",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Newgrounds",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "AniList",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Hashnode",
+  "why": "brak znanego konta / wzorca / wymaga logowania"
+ },
+ {
+  "name": "Filmweb",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Kwejk",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "JoeMonster",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Wikipedia PL",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Gutefrage.net",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Chomikuj",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Wikipedia DE",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Skyrock",
+  "why": "znane: ERROR 0.00 (DNS: domena nie istnieje); losowa: ERROR (DNS: domena nie istnieje)"
+ },
+ {
+  "name": "Salon24",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (przekierowanie poza profil)"
+ },
+ {
+  "name": "SensCritique",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Wikipedia FR",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikipedia IT",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikipedia ES",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikipedia NL",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikipedia CS",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "dobreprogramy",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (przekierowanie poza profil)"
+ },
+ {
+  "name": "Wikipedia UK",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikipedia SV",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "GitLab",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Reddit",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "YouTube",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Rumble",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Telegram",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "TikTok",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Snapchat",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Medium",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Hejto",
+  "why": "znane: FOUND 0.45 (tylko kod HTTP (kontrola nieudana)); losowa: ERROR (błąd serwera (500))"
+ },
+ {
+  "name": "Vimeo",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Threads",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Last.fm",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Blogger",
+  "why": "znane: NOT_FOUND 0.00 (przekierowanie poza profil); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Ko-fi",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Bandcamp",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: ERROR (wymaga logowania (przekierowanie na logowanie))"
+ },
+ {
+  "name": "Flickr",
+  "why": "znane: ERROR 0.00 (błąd serwera (502)); losowa: ERROR (błąd serwera (502))"
+ },
+ {
+  "name": "About.me",
+  "why": "znane: NOT_FOUND 0.00 (przekierowanie poza profil); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "ArtStation",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Imgur",
+  "why": "znane: NOT_FOUND 0.00 (strona jak dla losowej nazwy (soft-404)); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "Unsplash",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Quora",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Kaggle",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Behance",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Hacker News",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "LeetCode",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "CodePen",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Letterboxd",
+  "why": "znane: ERROR 0.00 (blokada anty-bot (challenge-platform)); losowa: ERROR (blokada anty-bot (challenge-platform))"
+ },
+ {
+  "name": "Wikipedia EN",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Wikimedia Commons",
+  "why": "znane: ERROR 0.00 (dostęp zabroniony (403)); losowa: ERROR (dostęp zabroniony (403))"
+ },
+ {
+  "name": "Replit",
+  "why": "znane: ERROR 0.00 (wymaga logowania (przekierowanie na logowanie)); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "DEV Community",
+  "why": "znane: NOT_FOUND 0.00 (kod 404); losowa: NOT_FOUND (kod 404)"
+ },
+ {
+  "name": "Duolingo",
+  "why": "znane: FOUND 0.50 (strona różni się od kontrolnej); losowa: NOT_FOUND (strona jak dla losowej nazwy (soft-404))"
+ },
+ {
+  "name": "VK",
+  "why": "znane: ERROR 0.00 (certyfikat: ClientPayloadError); losowa: NOT_FOUND (kod 404 [certyfikat nieważny])"
+ },
+ {
+  "name": "LiveJournal",
+  "why": "znane: ERROR 0.00 (timeout); losowa: ERROR (timeout)"
+ },
+ {
+  "name": "Peakbagger",
+  "why": "Cloudflare 403 (anty-bot), profil po numerycznym cid"
+ },
+ {
+  "name": "Polar Flow",
+  "why": "wymaga logowania, brak publicznych profili po nazwie"
+ },
+ {
+  "name": "Zwift / ZwiftPower",
+  "why": "wymaga logowania (ZwiftPower: strona Login dla kazdego ID)"
+ },
+ {
+  "name": "Outdooractive",
+  "why": "profil wymaga ID + sluga (/member/{nazwa}/{id}/), nie da sie sprawdzic po samej nazwie"
+ },
+ {
+  "name": "Summitpost",
+  "why": "przekierowanie na logowanie dla kazdej nazwy"
+ },
+ {
+  "name": "Parkrun",
+  "why": "strony /parkrunner/{id}/ zwracaja 200 dla kazdego ID z zakresu (render JS), istnienie nie do rozroznienia bez logowania"
+ },
+ {
+  "name": "RideWithGPS",
+  "why": "/users/{id} zwraca 200 dla dowolnego numeru (SPA), istnienie nie do rozroznienia"
+ },
+ {
+  "name": "Vinted.pl",
+  "why": "tylko wewnetrzne numeryczne ID (nie nick), znane konto to osoba prywatna, anty-bot; pominiete"
+ },
+ {
+  "name": "wspinanie.pl",
+  "why": "brak adresow profili po nicku (przekierowanie na strone glowna)"
+ },
+ {
+  "name": "bieganie.pl",
+  "why": "brak adresow profili po nicku (?profil= zwraca strone glowna)"
+ },
+ {
+  "name": "maratonypolskie.pl",
+  "why": "brak publicznych adresow profili po nicku"
+ },
+ {
+  "name": "lubimyczytac.pl",
+  "why": "profil wymaga ID + sluga (/profil/{id}/{slug}), 404 dla samej nazwy"
+ },
+ {
+  "name": "elektroda.pl",
+  "why": "profil po numerycznym ID, serwer nie odpowiada klientowi (timeout)"
+ },
+ {
+  "name": "gry-online.pl",
+  "why": "brak adresow profili po nicku (404 dla /profil/ i /uzytkownik/)"
+ },
+ {
+  "name": "Goldenline",
+  "why": "martwy: certyfikat TLS nie pasuje do domeny (SEC_E_WRONG_PRINCIPAL)"
+ },
+ {
+  "name": "Sympatia",
+  "why": "wymaga logowania (kazdy adres -> strona logowania)"
+ },
+ {
+  "name": "Pinterest PL",
+  "why": "duplikat: Pinterest jest w bazie (pinterest.com/{username}/)"
+ }
+]

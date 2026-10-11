@@ -1,0 +1,5 @@
+[
+  {"id": "1001", "dns_names": ["example.org", "www.example.org"]},
+  {"id": "1002", "dns_names": ["*.example.org", "api.example.org", "*.stage.example.org"]},
+  {"id": "1003", "dns_names": ["Mail.Example.Org.", "user@example.org", "notexample.org", "evil.example.org.attacker.com"]}
+]

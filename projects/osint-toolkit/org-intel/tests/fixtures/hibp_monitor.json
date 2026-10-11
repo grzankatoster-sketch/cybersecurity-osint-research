@@ -1,0 +1,13 @@
+{
+  "total": 2,
+  "shown": 2,
+  "breaches": [
+    {"name": "DemoBreach", "title": "Demo Breach", "domain": "shop.example.test", "breach_date": "2026-08-15",
+     "added_date": "2026-09-01T10:00:00Z", "pwn_count": 12345, "data_classes": ["Email addresses", "Passwords"],
+     "is_verified": true, "is_sensitive": false, "is_retired": false, "is_spam_list": false},
+    {"name": "FakeList", "title": "Fake List", "domain": "fake.test", "breach_date": "2026-07-01",
+     "added_date": "2026-07-02T08:00:00Z", "pwn_count": 999, "data_classes": ["Email addresses"],
+     "is_verified": false, "is_sensitive": false, "is_retired": false, "is_spam_list": true,
+     "description": "Lista <b>zmyślona</b>."}
+  ]
+}

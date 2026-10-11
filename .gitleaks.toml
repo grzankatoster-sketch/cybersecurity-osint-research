@@ -1,0 +1,20 @@
+# gitleaks configuration for the whole monorepo.
+# Run locally:  gitleaks dir . --redact   (or: gitleaks git . --redact)
+# The allowlist covers ONLY synthetic canary values used by redaction and secret-handling tests.
+# Never add real credentials here; rotate them instead (see SECURITY.md).
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic canaries in test suites and local tool environments"
+regexes = [
+  '''SYNTH-[A-Za-z0-9-]+''',
+  '''tok_SEKRET_[A-Za-z0-9_]*''',
+  # Public sample token from jwt.io (sub=1234567890), used to test JWT redaction.
+  '''eyJhbGciOiJIUzI1NiJ9\.eyJzdWIiOiIxMjM0NTY3ODkwIn0\.[A-Za-z0-9_-]+''',
+]
+paths = [
+  '''(^|/)\.venv[^/]*/''',
+  '''(^|/)node_modules/''',
+]

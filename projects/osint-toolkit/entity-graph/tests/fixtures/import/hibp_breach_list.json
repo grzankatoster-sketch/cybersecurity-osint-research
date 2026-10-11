@@ -1,0 +1,2 @@
+[{"Name":"Adobe","Title":"Adobe","Domain":"adobe.com","BreachDate":"2013-10-04","AddedDate":"2013-12-04T00:00:00Z","PwnCount":152445165,"DataClasses":["Email addresses","Password hints"],"IsVerified":true},
+ {"Name":"Evil","Title":"<img src=x onerror=alert(1)>","Domain":"","BreachDate":"2020-01-01","PwnCount":1,"DataClasses":["Email addresses"]}]

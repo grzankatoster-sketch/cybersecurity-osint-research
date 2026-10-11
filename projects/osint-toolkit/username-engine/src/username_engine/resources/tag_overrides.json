@@ -1,0 +1,45 @@
+{
+ "note": "dodatkowe tagi dla serwisów z WMN/Maigret, doklejane po scaleniu (sources.apply_tag_overrides, scripts/build_db.py); nie zmieniają reguł wykrywania",
+ "tags": {
+  "Strava": [
+   "fitness",
+   "sport"
+  ],
+  "Garmin Connect": [
+   "fitness",
+   "sport"
+  ],
+  "Sports Tracker": [
+   "fitness"
+  ],
+  "SmashRun": [
+   "fitness"
+  ],
+  "MyFitnessPal Community": [
+   "fitness"
+  ],
+  "MyFitnessPal Author": [
+   "fitness"
+  ],
+  "run-log.com": [
+   "fitness",
+   "sport"
+  ],
+  "community.whoop.com": [
+   "fitness"
+  ],
+  "forum.suunto.com": [
+   "fitness",
+   "sport"
+  ],
+  "forum.intervals.icu": [
+   "fitness",
+   "sport"
+  ],
+  "hikr.org": [
+   "sport",
+   "outdoor",
+   "hiking"
+  ]
+ }
+}

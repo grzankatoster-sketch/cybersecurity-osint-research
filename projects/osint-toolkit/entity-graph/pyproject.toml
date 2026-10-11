@@ -1,0 +1,23 @@
+[project]
+name = "entity-graph"
+version = "0.1.0"
+description = "Graf powiazan OSINT dla zleconych, autoryzowanych badan: transformacje, korelacja z dowodami, eksport GraphML/HTML, dziennik audytu"
+requires-python = ">=3.12"
+dependencies = []  # tylko stdlib; narzedzia siostrzane uruchamiane w ich wlasnych srodowiskach
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+entity-graph = "entity_graph.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

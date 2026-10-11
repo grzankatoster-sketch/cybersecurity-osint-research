@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hibp-monitor"
+version = "0.1.0"
+description = "Defensywny monitor Have I Been Pwned dla wlasnych domen i hasel (tylko oficjalne API)"
+requires-python = ">=3.12"
+dependencies = []  # HTTP przez stdlib urllib: zero zaleznosci uruchomieniowych
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+hibp-monitor = "hibp_monitor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

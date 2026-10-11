@@ -1,0 +1,138 @@
+{
+  "_note": "Shortened public-API answers (shape observed once per platform for a dev nick), with synthetic values: no real person's data.",
+  "mastodon": {
+    "nick": "alice",
+    "profile_url": "https://social.example/@alice",
+    "page": "<html><head><meta name=\"generator\" content=\"Mastodon v4.3.0\"></head><body><div id=\"mastodon\"></div></body></html>",
+    "api_url": "https://social.example/api/v1/accounts/lookup?acct=alice",
+    "body": {"id": "1093", "username": "alice", "acct": "alice", "display_name": "Alice Smith", "created_at": "2022-11-18T00:00:00.000Z", "note": "<p>Chess coach<br>from Oslo</p>", "url": "https://social.example/@alice", "avatar": "https://social.example/avatars/original/alice.png", "header": "https://social.example/headers/original/missing.png", "followers_count": 120, "following_count": 30, "statuses_count": 45, "last_status_at": "2024-05-01", "bot": false, "fields": [{"name": "Web", "value": "<a href=\"https://alice.dev\" rel=\"me nofollow noopener\" target=\"_blank\">alice.dev</a>", "verified_at": "2024-01-01T00:00:00.000+00:00"}, {"name": "Location", "value": "Oslo", "verified_at": null}]},
+    "expect": {"username": "alice", "user_id": "1093", "display_name": "Alice Smith", "bio": "Chess coach\nfrom Oslo", "avatar_url": "https://social.example/avatars/original/alice.png", "followers": 120, "following": 30, "posts": 45, "created_at": "2022-11-18T00:00:00+00:00", "latest_activity_at": "2024-05-01", "location": "Oslo", "website": "https://alice.dev", "external_links": ["https://alice.dev"]},
+    "absent": ["banner_url"]
+  },
+  "discourse": {
+    "nick": "alice",
+    "profile_url": "https://forum.example/u/alice",
+    "page": "<html><head><meta name=\"generator\" content=\"Discourse 3.3.0.beta1\"></head><body></body></html>",
+    "api_url": "https://forum.example/u/alice.json",
+    "body": {"user_badges": [], "user": {"id": 7, "username": "alice", "name": "Alice Smith", "avatar_template": "/user_avatar/forum.example/alice/{size}/1_2.png", "created_at": "2023-01-02T10:00:00.000Z", "last_seen_at": "2024-05-02T10:00:00.000Z", "bio_raw": "Endgame nerd", "location": "Bergen", "website": "https://alice.dev/blog", "post_count": 12, "trust_level": 1}},
+    "expect": {"username": "alice", "user_id": "7", "display_name": "Alice Smith", "bio": "Endgame nerd", "location": "Bergen", "website": "https://alice.dev/blog", "avatar_url": "https://forum.example/user_avatar/forum.example/alice/240/1_2.png", "created_at": "2023-01-02T10:00:00+00:00", "latest_activity_at": "2024-05-02T10:00:00+00:00", "posts": 12},
+    "absent": []
+  },
+  "mediawiki": {
+    "nick": "alice",
+    "profile_url": "https://wiki.example/wiki/User:Alice",
+    "page": "<html><head><meta name=\"generator\" content=\"MediaWiki 1.43.0\"><link rel=\"EditURI\" type=\"application/rsd+xml\" href=\"//wiki.example/w/api.php?action=rsd\"></head><body></body></html>",
+    "api_url": "https://wiki.example/w/api.php?action=query&list=users&ususers=alice&usprop=registration%7Ceditcount%7Cgender&format=json",
+    "body": {"batchcomplete": "", "query": {"users": [{"userid": 33302451, "name": "Alice", "editcount": 321, "registration": "2017-10-09T01:17:53Z", "gender": "female"}]}},
+    "expect": {"username": "alice", "user_id": "33302451", "created_at": "2017-10-09T01:17:53+00:00", "posts": 321, "gender": "female"},
+    "absent": ["display_name", "bio"]
+  },
+  "lemmy": {
+    "nick": "alice",
+    "profile_url": "https://lemmy.example/u/alice",
+    "page": "<html><head></head><body><script>window.isoData = {\"site_res\": {\"software\": \"lemmy\"}}</script></body></html>",
+    "api_url": "https://lemmy.example/api/v3/user?username=alice",
+    "body": {"person_view": {"person": {"id": 22157761, "name": "alice", "display_name": "Alice Smith", "bio": "Fediverse tinkerer", "avatar": "https://lemmy.example/pictrs/image/alice.png", "published": "2026-05-11T20:32:03.434551Z", "actor_id": "https://lemmy.example/u/alice", "local": true, "deleted": false, "bot_account": false}, "counts": {"person_id": 22157761, "post_count": 4, "comment_count": 9}}, "site": {"id": 1, "name": "Lemmy Example", "sidebar": "Instance rules, not the user's bio"}},
+    "expect": {"username": "alice", "user_id": "22157761", "display_name": "Alice Smith", "bio": "Fediverse tinkerer", "avatar_url": "https://lemmy.example/pictrs/image/alice.png", "created_at": "2026-05-11T20:32:03.434551+00:00", "posts": 4},
+    "absent": ["banner_url"]
+  },
+  "habbo": {
+    "nick": "Alice",
+    "profile_url": "https://www.habbo.es/profile/Alice",
+    "page": null,
+    "api_url": "https://www.habbo.es/api/public/users?name=Alice",
+    "body": {"uniqueId": "hhes-c987bc84166f58a89d8f38407061e602", "name": "alice", "figureString": "hr-893-42.hd-209-10", "motto": "Caballero, equilibrio perfecto.", "online": false, "lastAccessTime": "2014-06-27T03:05:42.000+0000", "memberSince": "2014-06-15T03:47:24.000+0000", "profileVisible": true, "currentLevel": 0, "selectedBadges": []},
+    "expect": {"username": "alice", "user_id": "hhes-c987bc84166f58a89d8f38407061e602", "bio": "Caballero, equilibrio perfecto.", "created_at": "2014-06-15T03:47:24+00:00", "latest_activity_at": "2014-06-27T03:05:42+00:00"},
+    "absent": ["display_name"]
+  },
+  "gravatar": {
+    "nick": "alice",
+    "profile_url": "https://en.gravatar.com/alice",
+    "page": null,
+    "api_url": "https://api.gravatar.com/v3/profiles/alice",
+    "body": {"hash": "378ff3da0fa7e2d85e5724c9a9d71c2e67624df3c11b037929dbb2df9c15a3c1", "display_name": "Alice Smith", "profile_url": "https://gravatar.com/alice", "avatar_url": "https://1.gravatar.com/avatar/378ff3da0fa7e2d85e5724c9a9d71c2e67624df3c11b037929dbb2df9c15a3c1", "location": "Bucharest", "description": "Designer and chess player", "job_title": "", "company": "Example Ltd", "verified_accounts": [{"service_type": "github", "service_label": "GitHub", "url": "https://github.com/alice-dev"}], "links": [{"label": "Blog", "url": "https://alice.dev"}]},
+    "expect": {"username": "alice", "display_name": "Alice Smith", "bio": "Designer and chess player", "location": "Bucharest", "company": "Example Ltd", "website": "https://alice.dev", "external_links": ["https://alice.dev", "https://github.com/alice-dev"]},
+    "absent": ["avatar_url"]
+  },
+  "dailymotion": {
+    "nick": "alice",
+    "profile_url": "https://www.dailymotion.com/alice",
+    "page": null,
+    "api_url": "https://api.dailymotion.com/user/alice?fields=id,username,screenname,description,url,avatar_360_url,created_time,followers_total,website_url,facebook_url,twitter_url,instagram_url,country,language",
+    "body": {"id": "x2egypp", "username": "alice", "screenname": "Alice Smith", "description": "Videos about endgames and coaching.", "url": "https://www.dailymotion.com/alice", "avatar_360_url": "https://s1.dmcdn.net/u/8g2cz1gWIgG7OhVDu/360x360", "created_time": 1593253408, "followers_total": 7, "website_url": "https://alice.dev", "facebook_url": null, "twitter_url": "https://x.com/alice_dev", "instagram_url": null, "country": "LV", "language": "en"},
+    "expect": {"username": "alice", "user_id": "x2egypp", "display_name": "Alice Smith", "bio": "Videos about endgames and coaching.", "avatar_url": "https://s1.dmcdn.net/u/8g2cz1gWIgG7OhVDu/360x360", "created_at": "2020-06-27T10:23:28+00:00", "followers": 7, "website": "https://alice.dev", "external_links": ["https://alice.dev", "https://x.com/alice_dev"], "location": "LV", "language": "en"},
+    "absent": []
+  },
+  "farcaster": {
+    "nick": "alice",
+    "profile_url": "https://warpcast.com/alice",
+    "page": null,
+    "api_url": "https://api.warpcast.com/v2/user-by-username?username=alice",
+    "body": {"result": {"user": {"fid": 198244, "displayName": "Alice Smith", "profile": {"bio": {"text": "Builder of small things", "mentions": []}, "location": {"placeId": "", "description": "Oslo, Norway"}}, "followerCount": 8, "followingCount": 52, "username": "alice", "pfp": {"url": "https://i.example.net/HF2qeiO.jpg", "verified": false}, "connectedAccounts": [{"platform": "x", "username": "alice_dev"}, {"platform": "github", "username": "alice-dev"}, {"platform": "unknownnet", "username": "alice"}], "viewerContext": {"following": false}}, "extras": {"custodyAddress": "0x0000"}}},
+    "expect": {"username": "alice", "user_id": "198244", "display_name": "Alice Smith", "bio": "Builder of small things", "location": "Oslo, Norway", "avatar_url": "https://i.example.net/HF2qeiO.jpg", "followers": 8, "following": 52, "external_links": ["https://x.com/alice_dev", "https://github.com/alice-dev"]},
+    "absent": []
+  },
+  "picsart": {
+    "nick": "alice",
+    "profile_url": "https://picsart.com/u/alice",
+    "page": null,
+    "api_url": "https://api.picsart.com/users/show/alice.json",
+    "body": {"status": "success", "id": 236910570003102, "name": "Alice Smith", "username": "alice", "photo": "https://cdn.example.net/picsart/alice.jpg", "default_profile_pic": false, "cover": null, "status_message": "Collage artist", "following_count": 2, "followers_count": 5, "photos_count": 17, "is_verified": true},
+    "expect": {"username": "alice", "display_name": "Alice Smith", "bio": "Collage artist", "avatar_url": "https://cdn.example.net/picsart/alice.jpg", "followers": 5, "following": 2, "posts": 17, "verified": true},
+    "absent": ["banner_url"]
+  },
+  "bandlab": {
+    "nick": "alice",
+    "profile_url": "https://www.bandlab.com/alice",
+    "page": null,
+    "api_url": "https://www.bandlab.com/api/v1.3/users/alice",
+    "body": {"about": "Jazz keys and loops", "backgroundPicture": {"isDefault": true, "url": "https://img.example.net/userbackgrounds/default/"}, "counters": {"followers": 3, "following": 4, "plays": 10}, "createdOn": "2017-11-18T04:19:05Z", "genres": [{"id": "jazz", "name": "Jazz"}], "id": "91b6239b-17cc-e711-80c2-0003ff466ad6", "isVerified": false, "links": {"youtube": "https://youtube.com/@alice"}, "name": "Alice Smith", "picture": {"isDefault": false, "url": "https://img.example.net/users/91b6239b/"}, "skills": [{"id": "keyboardist", "name": "Keyboardist"}], "username": "alice"},
+    "expect": {"username": "alice", "user_id": "91b6239b-17cc-e711-80c2-0003ff466ad6", "display_name": "Alice Smith", "bio": "Jazz keys and loops", "avatar_url": "https://img.example.net/users/91b6239b/", "created_at": "2017-11-18T04:19:05+00:00", "followers": 3, "following": 4, "verified": false, "tags": ["Jazz", "Keyboardist"], "external_links": ["https://youtube.com/@alice"]},
+    "absent": ["banner_url"]
+  },
+  "inaturalist": {
+    "nick": "Alice",
+    "profile_url": "https://www.inaturalist.org/people/Alice",
+    "page": null,
+    "api_url": "https://api.inaturalist.org/v1/users/Alice",
+    "body": {"total_results": 1, "page": 1, "per_page": 1, "results": [{"id": 11055819, "login": "alice", "login_exact": "alice", "name": "Alice Smith", "created_at": "2026-09-19T22:33:26+00:00", "icon_url": "https://static.example.net/users/icons/11055819/alice-medium.jpeg", "observations_count": 42, "identifications_count": 3}]},
+    "expect": {"username": "alice", "user_id": "11055819", "display_name": "Alice Smith", "avatar_url": "https://static.example.net/users/icons/11055819/alice-medium.jpeg", "created_at": "2026-09-19T22:33:26+00:00", "posts": 42},
+    "absent": []
+  },
+  "picarto": {
+    "nick": "alice",
+    "profile_url": "https://picarto.tv/alice",
+    "page": null,
+    "api_url": "https://api.picarto.tv/api/v1/channel/name/alice",
+    "body": {"user_id": 949120, "name": "Alice", "avatar": "https://images.example.net/ptvimages/9/94/949120/avatars/3a20.jpg", "online": false, "viewers_total": 5, "followers": 11, "category": ["Creative"], "title": "My Channel Title", "creation_date": "2019-09-14"},
+    "expect": {"username": "Alice", "user_id": "949120", "avatar_url": "https://images.example.net/ptvimages/9/94/949120/avatars/3a20.jpg", "created_at": "2019-09-14", "followers": 11, "tags": ["Creative"]},
+    "absent": ["bio"]
+  },
+  "statsfm": {
+    "nick": "alice",
+    "profile_url": "https://stats.fm/alice",
+    "page": null,
+    "api_url": "https://api.stats.fm/api/v1/users/alice",
+    "body": {"item": {"id": "31vsqnxo22n5yri5j66zhwcplszq", "customId": "alice", "createdAt": "2022-09-03T16:49:16.405Z", "displayName": "Alice Smith", "image": "https://img.example.net/alice.png", "profile": {"bio": "Hey there! I am using Spotistats", "pronouns": null}}},
+    "expect": {"username": "alice", "user_id": "31vsqnxo22n5yri5j66zhwcplszq", "display_name": "Alice Smith", "avatar_url": "https://img.example.net/alice.png", "created_at": "2022-09-03T16:49:16.405000+00:00"},
+    "absent": ["bio"]
+  },
+  "keybase": {
+    "nick": "alice",
+    "profile_url": "https://keybase.io/alice",
+    "page": null,
+    "api_url": "https://keybase.io/_/api/1.0/user/lookup.json?usernames=alice&fields=basics,profile,proofs_summary",
+    "body": {"status": {"code": 0, "name": "OK"}, "them": [{"id": "0dd305a90867f0c603c8eaa5fde50f19", "basics": {"username": "alice", "ctime": 1594259426, "username_cased": "Alice"}, "profile": {"full_name": "Alice Smith", "bio": "Cryptography enthusiast", "location": "Oslo"}, "proofs_summary": {"all": [{"proof_type": "github", "nametag": "alice-dev", "state": 1, "service_url": "https://github.com/alice-dev"}, {"proof_type": "generic_web_site", "nametag": "alice.dev", "state": 1, "service_url": "https://alice.dev"}, {"proof_type": "twitter", "nametag": "gone", "state": 3, "service_url": "https://x.com/gone"}]}}]},
+    "expect": {"username": "alice", "user_id": "0dd305a90867f0c603c8eaa5fde50f19", "display_name": "Alice Smith", "bio": "Cryptography enthusiast", "location": "Oslo", "created_at": "2020-07-09T01:50:26+00:00", "website": "https://alice.dev", "external_links": ["https://github.com/alice-dev", "https://alice.dev"]},
+    "absent": []
+  },
+  "bluesky": {
+    "nick": "alice",
+    "profile_url": "https://bsky.app/profile/alice.bsky.social",
+    "page": null,
+    "api_url": "https://public.api.bsky.app/xrpc/app.bsky.actor.getProfile?actor=alice.bsky.social",
+    "body": {"did": "did:plc:2zfs6lovld577jen6di77op4", "handle": "alice.bsky.social", "displayName": "Alice Smith", "description": "Posting about endgames", "avatar": "https://cdn.example.net/img/avatar/plain/did/alice", "createdAt": "2024-11-30T23:36:49.645Z", "followersCount": 116, "followsCount": 2, "postsCount": 5, "labels": []},
+    "expect": {"username": "alice", "user_id": "did:plc:2zfs6lovld577jen6di77op4", "display_name": "Alice Smith", "bio": "Posting about endgames", "avatar_url": "https://cdn.example.net/img/avatar/plain/did/alice", "followers": 116, "following": 2, "posts": 5},
+    "absent": ["banner_url"]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "service_budget": 200,
+  "request_budget": 250,
+  "retry_budget": 10,
+  "enrichment_budget": 0,
+  "job_timeout": 300,
+  "fallback_limit": 2,
+  "min_quality": 0,
+  "diversity_penalty": 5,
+  "circuit_threshold": 3,
+  "circuit_seconds": 60,
+  "rate_limit_seconds": 30,
+  "retry_min_delay": 1
+}
