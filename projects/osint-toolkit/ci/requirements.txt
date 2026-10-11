@@ -3,5 +3,5 @@
 pytest==9.0.3
 ruff==0.16.10
 httpx==0.28.1
-pydantic==2.12.5
+pydantic==2.14.0
 psycopg[binary]==3.3.6
