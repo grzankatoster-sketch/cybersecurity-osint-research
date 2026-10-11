@@ -17,7 +17,7 @@ pathspec==1.1.1
 pluggy==1.6.0
 propcache==0.5.4
 Pygments==2.21.0
-pytest==9.0.3
+pytest==9.1.1
 python-socks==3.1.1
 regex==2026.9.29
 ruff==0.16.10
