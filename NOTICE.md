@@ -28,7 +28,7 @@ Generated files that must stay out of version control are listed in [`.gitignore
 ### Reference usernames in shipped rule files
 
 `projects/osint-toolkit/username-engine/src/username_engine/resources/custom_sites.json` contains
-`known` reference usernames used to self-check detection rules. All 86 values were verified to also
+`known` reference usernames used to self-check detection rules. All 85 values were verified to also
 appear in the public WhatsMyName / Maigret data, where they serve the same purpose; they are
 attributed to those projects. They are not research subjects of this repository.
 

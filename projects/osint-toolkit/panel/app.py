@@ -24,7 +24,7 @@ import urllib.parse
 import webbrowser
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 ROOT = Path(__file__).resolve().parent.parent
 PANEL = Path(__file__).resolve().parent
@@ -947,7 +947,7 @@ def envelope(tool: str, args: list[str], params: dict, code: int, out: str, err:
         target = "katalog HIBP"
     channel = ("Tor/proxy (fail-closed)" if "--proxy" in args else "bezpośrednio" if "--direct" in args or tool in
                ("hibp", "harvester", "meta") else "offline (bez sieci)")
-    return {"zrodlo": source, "identyfikator": Path(target).name if tool == "exif" else target,
+    return {"zrodlo": source, "identyfikator": PureWindowsPath(target).name if tool == "exif" else target,
             "url": f"/wyniki/{report}" if report and (OUT / report).is_file() else "",
             "czas_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "status": status, "status_label": RESULT_STATUS[status], "uwaga": note, "kanal": channel,

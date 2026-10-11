@@ -51,7 +51,6 @@ ADD = {
 REPLACE = {
     "forum.centrala-termica.ro",
     "GitCode",
-    "kiwifarms.cc",
     "Pepper.pl",
     "Radiomed",
     "Strava",

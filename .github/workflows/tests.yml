@@ -44,6 +44,9 @@ jobs:
           python-version: ${{ matrix.python }}
       - name: Install
         run: python -m pip install -e ".[dev]"
+      - name: Install sibling tools used by entity-graph tests
+        if: matrix.package == 'entity-graph'
+        run: python -m pip install -e ../username-engine -e ../hibp-monitor -e ../osint-connectors -e ../dns-audit -e ../phone-check
       - name: Test (offline; no network access is required)
         run: python -m pytest -q -p no:cacheprovider
 
@@ -59,6 +62,8 @@ jobs:
         working-directory: projects/osint-toolkit
         run: |
           python -m pip install -e ./osint-connectors -e "./org-intel[dev]" -e "./entity-graph[dev]" -e "./hibp-monitor[dev]" -e "./meta-search[dev]"
+          # panel end-to-end tests launch these tools as sub-processes
+          python -m pip install -e ./phone-check -e ./dns-audit -e ./exif-map -e ./net-intel -e ./site-audit -e ./username-engine
           python -m pip install -r ci/requirements.txt
       - name: osint-connectors
         working-directory: projects/osint-toolkit/osint-connectors

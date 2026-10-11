@@ -67,7 +67,7 @@ Transformations applied to published files:
   `%LOCALAPPDATA%` or `C:\path\to\security-engineering-projects\…` placeholders.
 - **Unrelated product notes.** Status notes about a separate commercial product (payment provider,
   domain, legal review) were removed from `panel/app.py`'s `LAB_STATUS`.
-- Reference usernames in `custom_sites.json` (86) were verified to originate from the public
+- Reference usernames in `custom_sites.json` (85 after removing the kiwifarms.cc rule) were verified to originate from the public
   WhatsMyName / Maigret lists and were kept with attribution (see NOTICE.md).
 
 Residual-scan heuristics run after the transformations: owner identifiers, local paths, e-mail
@@ -142,8 +142,7 @@ OPEN-09 partly (pinned + SHA-256-verified catalogue downloads). The new configur
 the new credential contract (variable renamed to `UEE_CRED_TEST_KEY`, host scope added); their
 assertions are unchanged.
 
-**kiwifarms.cc rule** (`custom_sites.json`, `osint_custom.json`): Maigret's pinned upstream data
-contains the same site and endpoint, so the local rule is not needed for coverage; it is a
-recalibrated override. It was kept unchanged pending the owner's decision. Recommendation: remove
-it before any public release to avoid shipping a hand-tuned rule for a forum associated with
-harassment campaigns; coverage is unaffected.
+**kiwifarms.cc rule:** removed from `custom_sites.json` and `osint_custom.json` (owner decision,
+2026-10-11). Maigret's pinned upstream data contains the same site and endpoint, so catalogue coverage
+is unchanged; the hand-tuned local override for a forum associated with harassment campaigns is no
+longer shipped.

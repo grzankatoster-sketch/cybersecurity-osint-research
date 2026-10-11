@@ -1260,21 +1260,6 @@
    "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
   },
   {
-   "name": "kiwifarms.cc",
-   "url": "https://kiwifarms.cc/users/{username}",
-   "probe_url": "https://kiwifarms.cc/.well-known/webfinger?resource=acct:{username}@kiwifarms.cc",
-   "method": "GET",
-   "check_type": "status_code",
-   "tags": [
-    "social"
-   ],
-   "known": [
-    "crunklord420"
-   ],
-   "source": "custom",
-   "calibrated": "rekalibracja 04.10.2026 (stale): znane: FOUND 0.80 (kod 200 vs kontrola 404); losowa: NOT_FOUND (kod 404)"
-  },
-  {
    "name": "komunita.svetandroida.cz",
    "url": "https://komunita.svetandroida.cz/u/{username}/summary",
    "method": "GET",
