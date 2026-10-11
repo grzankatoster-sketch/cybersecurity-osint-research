@@ -93,7 +93,7 @@ jobs:
           python -m pip install Pillow
       - name: Unit, integration, regression and OPSEC tests
         run: python -m pytest -q -p no:cacheprovider
-      - name: Lint (non-blocking: 38 pre-existing findings, mostly E501 in tools/; see docs/SECURITY_REVIEW.md)
+      - name: "Lint (non-blocking: 38 pre-existing findings, mostly E501 in tools/; see docs/SECURITY_REVIEW.md)"
         continue-on-error: true
         run: python -m ruff check src tests tools
       - name: Benchmark harness tests (no ground truth required)
