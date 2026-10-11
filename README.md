@@ -11,6 +11,25 @@ least intrusive one. All test suites run offline.
 > **Responsible use.** Use these tools only on assets you own or are authorised in writing to assess.
 > A matching username or avatar is a lead, not proof of identity. See [SECURITY.md](SECURITY.md).
 
+**Maintainer:** [@grzankatoster-sketch](https://github.com/grzankatoster-sketch) — see [MAINTAINERS.md](MAINTAINERS.md).
+**Security policy:** [SECURITY.md](SECURITY.md) · **Review report:** [docs/SECURITY_REVIEW.md](docs/SECURITY_REVIEW.md)
+
+## Security engineering highlights
+
+Implemented and covered by tests in this repository:
+
+| Area | What was built | Where |
+|---|---|---|
+| SSRF protection | Address-class checks incl. numeric/IPv6-embedded IPv4 spellings, pinned resolution, per-hop redirect validation | `site-audit/src/site_audit/target.py`, `ultimate_username/opsec/policy.py` |
+| Fail-closed proxy | Missing, failing or **misconfigured** proxy blocks traffic instead of going direct; malformed settings refuse start-up | `ultimate_username/opsec/config.py`, `transport_factory.py`, `username-engine/.../http.py` |
+| Credential isolation | Catalogue entries can only reference `UEE_CRED_*` variables; the operator binds each to exact HTTPS hosts | `ultimate_username/credentials.py` |
+| Subprocess isolation | Per-tool environment allowlists so host secrets never reach child processes | `osint-mcp/src/osint_mcp/runner.py`, `entity-graph/.../siblings.py` |
+| Supply-chain integrity | Upstream catalogues pinned to commits and verified by SHA-256 before parsing | `username-engine/scripts/build_db.py` |
+| Evidence & provenance | Four-way result status, evidence levels, sourced facts, hash-chained audit log | `org-intel`, `entity-graph`, Ultimate evidence model |
+| Vulnerability remediation | Pre-publication review → 10 findings → 4 fixed + 1 partly fixed, all with regression tests (36 + 28 + 16 + 3 + 3 new tests) | [SECURITY.md](SECURITY.md#known-issues) |
+| Threat modeling | Threat model and control mapping for the username engine | [SECURITY_ARCHITECTURE.md](projects/ultimate-username-engine/docs/SECURITY_ARCHITECTURE.md) |
+| Security CI | gitleaks (full history), pip-audit, bandit, CodeQL, Dependabot | `.github/` |
+
 ## Projects
 
 | Project | What it is | Key techniques |
@@ -92,7 +111,13 @@ claim of external penetration testing, CVEs or third-party adoption.
   scripts rebuild them locally. Labelled benchmark data and captured profile pages are not published.
 - The repository was created with a fresh Git history.
 
+## Adoption
+
+Not yet established. As of 2026-10-11 the repository is new, has no stars or forks, no known
+dependent repositories, no packages published to PyPI or any distribution, and is not indexed by
+ecosyste.ms. (A PyPI package named `osint-mcp` exists but is an unrelated third-party project.)
+
 ## Contributing & license
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Original code is licensed under the
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [MAINTAINERS.md](MAINTAINERS.md). Original code is licensed under the
 [Apache License 2.0](LICENSE); third-party data and tools are described in [NOTICE.md](NOTICE.md).

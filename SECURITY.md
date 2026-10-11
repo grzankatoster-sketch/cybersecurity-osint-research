@@ -1,5 +1,12 @@
 # Security Policy
 
+Security maintainer: [@grzankatoster-sketch](https://github.com/grzankatoster-sketch) ([MAINTAINERS.md](MAINTAINERS.md)).
+
+**Remediation summary (2026-10-11):** the pre-publication review found 10 issues; 4 were fixed and 1
+partly fixed, all with regression tests (fail-closed proxy configuration, credential isolation,
+audit entry point, subprocess environment isolation, pinned and hash-verified downloads); 5
+low-severity issues and the remainder of OPEN-09 stay open and are listed below.
+
 ## Supported versions
 
 This repository is a research and engineering portfolio. Only the `main` branch is maintained.
